@@ -58,7 +58,43 @@ class AuthController extends BaseController
 
     public function userLogin(Request $request)
     {
+
+
         $this->setPageTitle('User Login');
+        if ($request->post()) {
+            $request->validate([
+                'email' => 'required|email|exists:users,email',
+                'password' => 'required'
+            ]);
+            DB::beginTransaction();
+            try {
+                $isExits = User::where('email', $request->email)->first();
+                if ($isExits != null) {
+                    $userData = $request->only('email', 'password');
+                    $login = auth()->attempt($userData, true);
+                    if ($login) {                       
+                        DB::commit();
+                        // return $this->responseRedirectBack('Login Successfully', 'success');
+                        // return $this->responseRedirect('user.dashboard.index', 'Login Successfully', 'success');
+                        return $this->responseRedirect('home', 'Login Successfully', 'success');
+                    } else {
+                        return $this->responseRedirectBack('Something went wrong ', 'false');
+                    }
+                } else {
+                    return $this->responseRedirectBack('Something went wrong ', 'false');
+                }
+            } catch (\Exception $e) {
+                DB::rollback();
+                logger($e->getMessage() . ' -- ' . $e->getLine() . ' -- ' . $e->getFile());
+                return $this->responseRedirectBack('Something went wrong', 'error', true);
+            }
+        }
+        return view('user.auth.login');
+
+
+
+
+        // $this->setPageTitle('User Login');
         // if ($request->post()) {
         //     $request->validate([
         //         'mobile_number' => 'required|exists:users,mobile_number'
@@ -85,30 +121,31 @@ class AuthController extends BaseController
         //         return $this->responseRedirectBack('Something went wrong', 'error', true);
         //     }
         // }
-        if ($request->isMethod('post')) { // Checking if it's a POST request
-            $request->validate([
-                'mobile_number' => 'required|exists:users,mobile_number' // Validation rules for mobile_number
-            ]);
-            try {
-                $user = User::where('mobile_number', $request->mobile_number)->first(); // Retrieving user by mobile number
-                if ($user) {
-                    // Authenticate user without password
-                    auth()->login($user);
-                    if (auth()->check()) { // Check if user is authenticated
-                        if (auth()->user()->type == 'user') { // Checking user type
-                            return $this->responseRedirect('home', 'Login Successfully', 'success');
-                        }
-                    } else {
-                        return $this->responseRedirectBack('Authentication failed', 'error');
-                    }
-                } else {
-                    return $this->responseRedirectBack('User not found', 'error');
-                }
-            } catch (\Exception $e) {
-                logger($e->getMessage() . ' -- ' . $e->getLine() . ' -- ' . $e->getFile());
-                return $this->responseRedirectBack('Something went wrong', 'error', true);
-            }
-        }
+
+        // if ($request->isMethod('post')) { // Checking if it's a POST request
+        //     $request->validate([
+        //         'mobile_number' => 'required|exists:users,mobile_number' // Validation rules for mobile_number
+        //     ]);
+        //     try {
+        //         $user = User::where('mobile_number', $request->mobile_number)->first(); // Retrieving user by mobile number
+        //         if ($user) {
+        //             // Authenticate user without password
+        //             auth()->login($user);
+        //             if (auth()->check()) { // Check if user is authenticated
+        //                 if (auth()->user()->type == 'user') { // Checking user type
+        //                     return $this->responseRedirect('home', 'Login Successfully', 'success');
+        //                 }
+        //             } else {
+        //                 return $this->responseRedirectBack('Authentication failed', 'error');
+        //             }
+        //         } else {
+        //             return $this->responseRedirectBack('User not found', 'error');
+        //         }
+        //     } catch (\Exception $e) {
+        //         logger($e->getMessage() . ' -- ' . $e->getLine() . ' -- ' . $e->getFile());
+        //         return $this->responseRedirectBack('Something went wrong', 'error', true);
+        //     }
+        // }
 
         return view('frontend.auth.login');
     }

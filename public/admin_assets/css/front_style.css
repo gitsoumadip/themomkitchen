@@ -1,0 +1,505 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transform: all .2s linear;
+}
+
+:root{
+    --green:#27ae60;
+    --black:#192a56;
+    --light-color:#666;
+    --box-shadow:0.5rem 1.5rem rgba(0,0,0,.1);
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+}
+
+body{
+    width: 100%;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 64px;
+    color: #222;
+}
+
+h2 {
+    font-size: 46px;
+    line-height: 54px;
+    color: #222;
+}
+
+h4{
+    font-size: 20px;
+    color: #222;
+}
+
+h6{
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+
+
+
+p{
+    font-size: 16px;
+    color: #465b52;
+    margin: 15px 0px 20px 0;
+}
+
+.section-p1{
+    padding: 40px 80px;
+}
+
+.section-m1{
+    margin: 40px 0;
+}
+
+section{
+    padding: 2rem 9%;
+}
+
+section:nth-child(even){
+    background: #eee;
+}
+
+
+
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color: #fff;
+    background: var(--black);
+    border-radius: .5rem;
+    cursor: pointer;
+    padding: .8rem 3rem;
+}
+
+/* .btns{
+    width: 50px;
+    height: 80px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background: var(--black);
+    font-size: 20px;
+    padding: 3px 3px;
+}
+
+.btns:hover{
+    background: var(--green);
+} */
+
+.btn:hover{
+    background: var(--green);
+    letter-spacing: .1rem;
+}
+
+header{
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 1rem 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+}
+
+header .logo{
+    color: var(--black);
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+.img-logo{
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+}
+
+
+
+header .logo i{
+    color: var(--green);
+}
+
+header .navbar a{
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: var(--light-color);
+}
+header .navbar a.active,
+header .navbar a:hover{
+    color: #fff;
+    background: var(--green);
+}
+
+
+
+
+
+header .icons i,
+header .icons a{
+    cursor: pointer;
+    margin-left: .5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--black);
+    border-radius: 50%;
+    background: #eee;
+}
+
+header .icons i:hover,
+header .icons a:hover{
+    color: #fff;
+    background: var(--green);
+    transform: rotate(360deg);
+}
+
+header .icons #menu-bars{
+    display: none;
+}
+
+.home .home-slider .slide{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 9rem;
+
+}
+
+
+.home .home-slider .slide .content{
+    flex: 1 1 45rem;
+}
+
+.home .home-slider .slide .image{
+    flex: 1 1 45rem;
+}
+
+.home .home-slider .slide .image img{
+    width: 100%;
+}
+
+.home .home-slider .slide .content span{
+    color: var(--green);
+    font-size: 2.5rem;
+}
+
+.home .home-slider .slide .content h3{
+    color: var(--black);
+    font-size: 7rem;
+}
+
+.home .home-slider .slide .content p{
+    color: var(--light-color);
+    font-size: 2rem;
+    padding: 5rem 0;
+    line-height: 1.5;
+}
+
+.swiper-pagination-bullet-active{
+    background: var(--green);
+}
+
+
+.menus{
+    text-align: center;
+}
+
+.menus .menu-container{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    flex-wrap: wrap;
+}
+
+.menus .menu-pro{
+    width: 23%;
+    min-width: 250px;
+    padding: 10px 12px;
+    border: 1px solid #cce7d0;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 20px 20px 30px rgba(0,0, 0, 0.02);
+    margin: 15px 0;
+    transition: 0.2s ease;
+    position: relative;
+}
+
+.menus .menu-pro:hover{
+    box-shadow: 20px 20px 30px rgba(0,0, 0, 0.06);
+
+}
+
+.menus .menu-pro img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.menus .menu-pro .des {
+    text-align: start;
+    padding: 10px 0;
+}
+
+.menus .menu-pro .des span{
+    color: 0606063;
+    font-size: 12px;
+
+}
+
+.menus .menu-pro .des h5{
+    padding-top: 7px;
+    color: #1a1a1a;
+    font-size: 14px;
+}
+
+.menus .menu-pro .des i{
+    font-size: 12px;
+    color: rgb(242, 181, 25);
+}
+
+.menus .menu-pro .des h4 {
+    padding-top: 7px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #088178;
+}
+
+.menus .menu-pro .cart{
+    width:40px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    border-radius: 50px;
+    background-color: #e8f6ea;
+    bottom: 20px;
+    right: 10px;
+    color: #088178;
+    border: 1px solid #cce7d0;
+    
+
+}
+
+
+/* Banner style */
+ .banner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* background-image: url(Image/logo1.jpg);
+    width: 100%;
+    height: 40vh;
+    background-size: cover;
+    background-position: center; */
+ }
+
+ .banner h4{
+    color: #000;
+    font-size: 16px;
+ }
+
+.banner h2{
+    color: #000;
+    font-size: 30px;
+    padding: 10px 0;
+ }
+
+ .banner h2 span{
+    color: #ef3636;
+    
+    
+ }
+
+ .btn-normal{
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px 30px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+ }
+
+ .banner button:hover{
+    background: var(--green);
+    color: #fff;
+ }
+
+ /* Banner style ends */
+
+
+ /* Footer style start */
+
+
+
+ /* Footer style ends */
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media query */
+@media (max-width:991px){
+    html{
+        font-size: 55%;
+    }
+
+    header{
+        padding: 1rem 2rem;
+    }
+
+    header{
+        padding:  2rem;
+    }
+}
+
+@media (max-width:768px){
+    header .icons #menu-bars{
+        display: inline-block;
+    }
+
+    header .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: .1rem solid rgba(0,0,0,.2);
+        border-bottom: .1rem solid rgba(0,0,0,.2);
+        padding: 1rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .navbar.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    header .navbar a{
+        display: block;
+        padding: 1.5rem;
+        margin: 1rem;
+        font-size: 2rem;
+        background: #eee;
+    }
+
+    .home .home-slider .slide .content h3{
+        
+        
+        font-size: 5rem;
+    }
+
+    
+
+}
+
+@media (max-width:991px){
+    html{
+        font-size: 50%;
+    }
+
+    
+    
+}
+
+
+@media (max-width:799px){
+    .menus .menu-container{
+        
+        
+        justify-content: center;
+       
+        
+
+    }
+
+    .menus .menu-pro{
+        margin: 15px;
+    }
+}

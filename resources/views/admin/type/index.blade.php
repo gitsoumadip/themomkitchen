@@ -18,7 +18,7 @@
     <!-- company details -->
     <div class="company_profiles card-body">
         <div class="table-responsive adminbio_table">
-            <table class="table table-hover dataTable">
+            <table class="table table-hover ">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -37,13 +37,22 @@
                             <td>
                                 {{ $key + 1 }}
                             </td>
-                            <td><img src="{{ asset('uploads/' . $data->img) }}" alt="" width="100px" height="100px"></td>
+                            <td><img src="{{ asset('uploads/' . $data->img) }}" alt="" width="100px"
+                                    height="100px"></td>
                             <td>{{ $data->categorys->name }}</td>
                             <td>{{ $data->name }}</td>
                             <td>{{ $data->description }}</td>
                             <td>{{ $data->price }}</td>
                             {{-- <td>{{ $data->price }}</td> --}}
-                           
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input statusChange"
+                                        id="switch{{ $data->id }}" data-uuid="{{ $data->id }}"
+                                        data-message="{{ $data->is_active ? 'deactive' : 'active' }}" data-table="types"
+                                        name="example" {{ $data->is_active == 1 ? 'checked' : '' }}>
+                                    <label class="custom-control-label " for="switch{{ $data->id }}"></label>
+                                </div>
+                            </td>
                             <td>
                                 <div class="action_box">
                                     <a href="{{ route('admin.category.edit', $data->id) }}" class="text-primary"><i

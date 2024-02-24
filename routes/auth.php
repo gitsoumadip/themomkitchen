@@ -12,6 +12,7 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::prefix('user')->as('user.')->group(function () {
         Route::match(['get', 'post'], '/login', 'userLogin')->name('login');
+        Route::match(['get', 'post'], '/signup', 'userSignup')->name('signup');
         Route::get('/logout', 'logout')->name('logout');
     });
 

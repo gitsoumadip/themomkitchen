@@ -1,4 +1,4 @@
-@extends('layouts.app', ['isSidebar' => true, 'isNavbar' => true, 'isFooter' => true])
+@extends('user.layouts.app', ['isSidebar' => true, 'isNavbar' => true, 'isFooter' => true])
 @section('dashboard', 'active')
 @section('content')
     <div class="dashboard_mainsec">

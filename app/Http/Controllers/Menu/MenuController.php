@@ -41,8 +41,8 @@ class MenuController extends BaseController
     public function index()
     {
         $this->setPageTitle('Add Type');
-        $fetchMenu=$this->menuContracts->getAll();
-        return view('admin.menu.index',compact('fetchMenu'));
+        $fetchMenu = $this->menuContracts->getAll();
+        return view('admin.menu.index', compact('fetchMenu'));
     }
 
     public function add(Request $request)
@@ -58,9 +58,15 @@ class MenuController extends BaseController
 
             DB::beginTransaction();
             try {
-                // $insertArry = $request->only(['name']); // Use only() instead of except()
-                $insertArry = $request->except(['_token', '_method', 'id']);
-                $isCategoryCreated = $this->menuContracts->createMenu($insertArry);
+                // dd($request->all());
+                if (isset($request->uuid)) {
+                    $insertArry = $request->except(['_token', '_method']);
+                    $isCategoryCreated = $this->menuContracts->updateMenu($insertArry);
+                } else {
+
+                    $insertArry = $request->except(['_token', '_method', 'id']);
+                    $isCategoryCreated = $this->menuContracts->createMenu($insertArry);
+                }
 
                 if ($isCategoryCreated) {
                     DB::commit();
@@ -76,6 +82,11 @@ class MenuController extends BaseController
             }
         }
 
+        return view('admin.menu.add-edit', compact('data'));
+    }
+    public function edit($id)
+    {
+        $data = Type::with('items')->where('id', $id)->first();
         return view('admin.menu.add-edit', compact('data'));
     }
 }

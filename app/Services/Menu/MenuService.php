@@ -30,20 +30,22 @@ class MenuService implements MenuContracts
                 'item_id' => $data
             ];
         }
-
-        // dd($isCreateCategory);
         $create=Menu::insert($isCreateCategory);
         return $create;
     }
 
-    public function updateCategory($data)
+    public function updateMenu($data)
     {
-        $id = uuidtoid($data['uuid'], 'categories');
-        $isUpdateCategory = Category::where('id', $id)->first();
-        $isUpdateCategory->name = $data['name'];
-        $isUpdateCategory->description = $data['description'];
-        $isUpdateCategory->save();
-        return $isUpdateCategory;
+        $uuid = $data['uuid'];
+        $itemIds = $data['itemId'];
+        
+        $record = Type::where('id', $uuid)->first();
+       
+        $record->items()->sync($itemIds);
+        
+        // Save the changes
+        $record->save();
+        return $record;
     }
 
     public function findZoneById($uuid)

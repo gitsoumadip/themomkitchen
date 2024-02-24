@@ -34,9 +34,10 @@ class OrderController extends BaseController
     }
     public function index()
     {
-        $this->setPageTitle('Add Type');
-        // $fetchMenu = $this->menuContracts->getAll();
-        return view('admin.order.index');
+        $this->setPageTitle('Order Details');
+        $fetchOrder =Order::with('types','types.items','users','orderDetails')->get();
+        // dd($fetchOrder->toArray());
+        return view('admin.order.index',compact('fetchOrder'));
     }
     public function add(Request $request)
     {

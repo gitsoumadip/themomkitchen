@@ -1,29 +1,28 @@
 @media only screen and (max-width: 991px) {
-  .stellarnav.mobile.right>ul {
+  .stellarnav.mobile.right > ul {
     z-index: 9;
     background: #212020;
   }
-
-  .stellarnav.mobile>ul>li>a {
+  .stellarnav.mobile > ul > li > a {
     text-align: left;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .stellarnav.mobile.right>ul {
-    z-index: 9;
+  .stellarnav.mobile.right > ul {
+    z-index: 9999;
     background: #212020;
   }
-
-  .stellarnav.mobile>ul>li>a {
+  .stellarnav.mobile > ul > li > a {
     text-align: left;
   }
-
   .swiper-horizontal {
     height: 70vh;
   }
 
-  .swiper-wrapper>.swiper-slide.swiper-slide-visible.swiper-slide-fully-visible.swiper-slide-active>div {
+  .swiper-wrapper
+    > .swiper-slide.swiper-slide-visible.swiper-slide-fully-visible.swiper-slide-active
+    > div {
     height: 70vh;
   }
 
@@ -41,7 +40,6 @@
   section.menu_sec {
     padding: 20px;
   }
-
   .heading_box {
     width: 100%;
   }
@@ -52,7 +50,6 @@
     gap: 15px;
     margin: 25px 0;
   }
-
   .nav-pills .nav-link {
     min-width: 90px;
     font-size: 12px;
@@ -82,16 +79,11 @@
     height: 40px;
   }
 
-  .menus_right {
-    padding: 5px;
-    width: 70px;
-    height: 70px;
-  }
-
   .menus_right h5,
   .heading_box p {
     font-size: 13px;
   }
+
 
   .fa-2xl {
     padding-top: 10px;

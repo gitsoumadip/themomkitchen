@@ -35,8 +35,9 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- @forelse ($fetchMenu as $key => $data)
-                <tr>
+                @forelse ($fetchOrder as $key => $data)
+                {{-- @dd($data) --}}
+               {{-- <tr>
                     <td>
                         {{ $key + 1 }}
                     </td>
@@ -45,9 +46,9 @@
                     </td>
                     <td>                       
                     </td>
-                </tr>
+                </tr>--}}
                 @empty
-                @endforelse --}}
+                @endforelse 
             </tbody>
         </table>
     </div>

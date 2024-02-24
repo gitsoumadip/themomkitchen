@@ -2,7 +2,7 @@
     <!-- side bar logo  -->
     <div class="app-header__logo">
         <div class="collaspe_logo">
-            <img src="{{ asset('assets/images/collaspe_logo.svg') }}" class="img-fluid" alt="" />
+            <img src="{{ asset('admin_assets/images/collaspe_logo.svg') }}" class="img-fluid" alt="" />
         </div>
         <div class="header__pane ml-auto">
             <div>
@@ -27,8 +27,8 @@
         <!-- admin name -->
         <div class="adminname_box">
             <div class="adminb_head">
-                <img src="{{ asset('assets/images/dash-logo.png') }}" class="img-fluid" alt=""
-                    title="Cloud Queue" />
+                <img src="{{ asset('admin_assets/image/user-icon.jpg') }}" class="img-fluid" alt=""
+                    title="Cloud Queue"  height="200px" width="250px"/>
             </div>
             <div class="adminb_title">
                 <p>Hello,<span class="firstName">{{ auth()->user()->name }}</span></p>
@@ -38,228 +38,57 @@
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading mm-@yield('dashboard')">
-                    {{-- <a href="{{ route('admin.dashboard.dashboard') }}"> --}}
+                    <a href="{{ route('user.dashboard.home') }}">
+                    <div class="menuitem_box">
+                        <div class="menuitem_name">
+                            <span>
+                                <img src="{{ asset('admin_assets/images/iwwa_dashboard.png') }}" class="img-fluid"
+                                    alt="" />
+                            </span>
+                            Dashboard
+                        </div>
+                    </div>
+                    </a>
+                </li>
+                <li class="app-sidebar__heading mm-@yield('category')">
+                    <a href="{{ route('user.dashboard.myOrder') }}">
                         <div class="menuitem_box">
                             <div class="menuitem_name">
                                 <span>
-                                    <img src="{{ asset('assets/images/iwwa_dashboard.png') }}" class="img-fluid"
+                                    <img src="{{ asset('admin_assets/images/icon_money.png') }}" class="img-fluid"
                                         alt="" />
                                 </span>
-                                Dashboard
+                                MY ORDER
                             </div>
                         </div>
                     </a>
                 </li>
-                @if (auth()->user()->hasRole('super-admin'))
+
+                @if (auth()->user()->hasRole('user'))
                     <li class="app-sidebar__heading mm-@yield('category')">
-                        {{-- <a href="{{ route('admin.category.list') }}"> --}}
+                        <a href="{{ route('user.dashboard.profile') }}">
                             <div class="menuitem_box">
                                 <div class="menuitem_name">
                                     <span>
-                                        <img src="{{ asset('assets/images/icon_money.png') }}" class="img-fluid"
+                                        <img src="{{ asset('admin_assets/images/icon_money.png') }}" class="img-fluid"
                                             alt="" />
                                     </span>
-                                    Category
+                                    ACCOUNT SETTINGS
                                 </div>
                             </div>
                         </a>
                     </li>
                 @endif
 
-                @if (auth()->user()->hasRole('super-admin'))
-                    <li class="app-sidebar__heading mm-@yield('category')">
-                        {{-- <a href="{{ route('admin.type.list') }}"> --}}
-                            <div class="menuitem_box">
-                                <div class="menuitem_name">
-                                    <span>
-                                        <img src="{{ asset('assets/images/icon_money.png') }}" class="img-fluid"
-                                            alt="" />
-                                    </span>
-                                    Type
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                @endif
-                @if (auth()->user()->hasRole('super-admin'))
-                    <li class="app-sidebar__heading mm-@yield('category')">
-                        {{-- <a href="{{ route('admin.item.list') }}"> --}}
-                            <div class="menuitem_box">
-                                <div class="menuitem_name">
-                                    <span>
-                                        <img src="{{ asset('assets/images/icon_money.png') }}" class="img-fluid"
-                                            alt="" />
-                                    </span>
-                                    Item
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                @endif
-                @if (auth()->user()->hasRole('super-admin'))
-                    <li class="app-sidebar__heading mm-@yield('category')">
-                        {{-- <a href="{{ route('admin.menu.list') }}"> --}}
-                            <div class="menuitem_box">
-                                <div class="menuitem_name">
-                                    <span>
-                                        <img src="{{ asset('assets/images/icon_money.png') }}" class="img-fluid"
-                                            alt="" />
-                                    </span>
-                                    Menu
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                @endif
-
-                @if (auth()->user()->hasRole('super-admin'))
-                    <li class="app-sidebar__heading mm-@yield('category')">
-                        {{-- <a href="{{ route('admin.menu.list') }}"> --}}
-                            <div class="menuitem_box">
-                                <div class="menuitem_name">
-                                    <span>
-                                        <img src="{{ asset('assets/images/icon_money.png') }}" class="img-fluid"
-                                            alt="" />
-                                    </span>
-                                   Location
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                @endif
-                @if (auth()->user()->hasRole('super-admin'))
-                    <li class="app-sidebar__heading mm-@yield('category')">
-                        {{-- <a href="{{ route('admin.category.list') }}"> --}}
-                            <div class="menuitem_box">
-                                <div class="menuitem_name">
-                                    <span>
-                                        <img src="{{ asset('assets/images/icon_money.png') }}" class="img-fluid"
-                                            alt="" />
-                                    </span>
-                                    Manage Order Item
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                @endif
-
-                @if (auth()->user()->hasRole('super-admin', 'clinic', 'doctor'))
-                    <li class="app-sidebar__heading mm-@yield('user-permission') ?? mm-@yield('role-permission')">
-                        <a href="#">
-                            <div class="menuitem_box">
-                                <div class="menuitem_name">
-                                    <span>
-                                        <img src="{{ asset('assets/images/menu-items/nucleus.svg') }}"
-                                            class="img-fluid" alt="">
-                                    </span>
-                                    User Management
-                                </div>
-                                <span class="sub_drop">
-                                    <i class="fa-solid fa-angle-down"></i>
-                                </span>
-                            </div>
-                        </a>
-                        <ul>
-                            <li class="app-sidebar__heading mm-@yield('user-permission')">
-                                {{-- <a href="{{ route('admin.user-permission.list') }}"> --}}
-                                    <div class="menuitem_box">
-                                        <div class="menuitem_name">
-                                            <span>
-                                                <img src="{{ asset('assets/images/menu-items/grant.svg') }}"
-                                                    class="img-fluid" alt="">
-                                            </span>
-                                            Customer Details
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="app-sidebar__heading mm-@yield('role-permission')">
-                                {{-- <a href="{{ route('admin.role-permission.list') }}"> --}}
-                                    <div class="menuitem_box">
-                                        <div class="menuitem_name">
-                                            <span>
-                                                <img src="{{ asset('assets/images/menu-items/fund.svg') }}"
-                                                    class="img-fluid" alt="">
-                                            </span>
-                                            Customer Reports
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
-
-                {{-- @if (auth()->user()->hasRole('super-admin', 'clinic', 'doctor'))
-                    <li class="app-sidebar__heading mm-@yield('user-permission') ?? mm-@yield('role-permission')">
-                        <a href="#">
-                            <div class="menuitem_box">
-                                <div class="menuitem_name">
-                                    <span>
-                                        <img src="{{ asset('assets/images/menu-items/nucleus.svg') }}"
-                                            class="img-fluid" alt="">
-                                    </span>
-                                    User Management
-                                </div>
-                                <span class="sub_drop">
-                                    <i class="fa-solid fa-angle-down"></i>
-                                </span>
-                            </div>
-                        </a>
-                        <ul>
-                            <li class="app-sidebar__heading mm-@yield('user-permission')">
-                                <a href="{{ route('admin.user-permission.list') }}">
-                                    <div class="menuitem_box">
-                                        <div class="menuitem_name">
-                                            <span>
-                                                <img src="{{ asset('assets/images/menu-items/grant.svg') }}"
-                                                    class="img-fluid" alt="">
-                                            </span>
-                                            Admin User
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="app-sidebar__heading mm-@yield('role-permission')">
-                                <a href="{{ route('admin.role-permission.list') }}">
-                                    <div class="menuitem_box">
-                                        <div class="menuitem_name">
-                                            <span>
-                                                <img src="{{ asset('assets/images/menu-items/fund.svg') }}"
-                                                    class="img-fluid" alt="">
-                                            </span>
-                                            Role & Permission
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                @endif --}}
-
-                {{-- @if (auth()->user()->hasRole('super-admin', 'doctor', 'clinic'))
-                <li class="app-sidebar__heading mm-@yield('setting')">
-                    <a href="#">
-                        <div class="menuitem_box">
-                            <div class="menuitem_name">
-                                <span>
-                                    <img src="{{ asset('assets/images/settings.png') }}" class="img-fluid" alt="" />
-                                </span>
-                                Settings
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                @endif --}}
                 <li class="app-sidebar__heading mm-@yield('logout')">
                     <a href="{{ route('logout') }}">
                         <div class="menuitem_box">
                             <div class="menuitem_name">
                                 <span>
-                                    <img src="{{ asset('assets/images/logout.png') }}" class="img-fluid"
+                                    <img src="{{ asset('admin_assets/images/logout.png') }}" class="img-fluid"
                                         alt="" />
                                 </span>
-                                Logout
+                                LOGOUT
                             </div>
                         </div>
                     </a>

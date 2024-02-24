@@ -27,16 +27,22 @@ class UserController extends Controller
     public function edit(Request $request)
     {
     }
-    public function add(Request $request)
-    {
-    }
+
 
 
     // User 
+    public function profile(Request $request)
+    {
+        return view('user.profile.index');
+    }
 
-   
     public function home()
     {
         return view('user.dashboard.dashboard');
+    }
+
+    public function myOrder(Request $request)
+    {
+        return view('user.order.index');
     }
 }

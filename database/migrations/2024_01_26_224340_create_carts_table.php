@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('qty')->nullable();
             $table->foreignId('item_id')->nullable()->constrained()->references('id')->on('items')->onDelete('cascade');
             $table->string('addtional_qty')->nullable();
+            $table->integer('price')->nullable();
+            $table->integer('total_price')->nullable();
             $table->tinyInteger('is_active')->default(true)->comment('0:Inactive,1:Active')->nullable();
             $table->timestamps();
         });

@@ -16,6 +16,13 @@ class TypeService implements TypeContracts
         // dd($data->toArray());
         return $data;
     }
+    public function fetchgetAll()
+    {
+        $data = Type::with('categorys')->get();
+        // $data->first()->items;
+        // dd($data->toArray());
+        return $data;
+    }
 
     public function findById($id)
     {

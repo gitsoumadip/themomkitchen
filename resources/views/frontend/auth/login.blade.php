@@ -138,15 +138,40 @@
         <div class="box">
             <div class="form signup">
                 <h5>Signup</h5>
-                <form action="#">
-                    <input type="text" placeholder="Full name" required />
-                    <input type="text" placeholder="Email address" required />
-                    <input type="Password" placeholder="Password" required />
+                <form id="formAuthentication" class="mb-3" action="{{ route('user.signup') }}" method="POST">
+                    @csrf
+
+                    <input type="text" placeholder="Full name" required name="name" id="name" />
+                    @error('name')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <input type="number" placeholder="Phone Number" required name="phone" id="phone" />
+                    @error('phone')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <input type="email" placeholder="Email address" required name="email" id="email" />
+                    @error('email')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <input type="password" placeholder="Password" required name="password" id="password" />
+                    @error('password')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <div class="checkbox">
                         <input type="checkbox" id="signupCheck">
                         <label for="signupCheck">I accept all terms & conditions</label>
                     </div>
-                    <input type="submit" value="Signup" />
+                    <button class="btn btn-primary btn-effect btn-effect-arrow mt-4">
+                        Signup
+                    </button>
                 </form>
             </div>
 
@@ -154,14 +179,22 @@
                 <h5>Login</h5>
                 <form id="formAuthentication" class="mb-3" action="{{ route('user.login') }}" method="POST">
                     @csrf
-                    <input type="text" placeholder="Email address" name="email" id="email" required />
-                    <input type="Password" placeholder="Password" name="password" id="password" required />
+                    <input type="text" placeholder="Enter Your Phone Numbere" name="phone" id="phone" required />
+                    @error('phone')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <input type="password" placeholder="Password" name="password" id="password" required />
+                    @error('password')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <button class="btn btn-primary btn-effect btn-effect-arrow mt-4">
                         Login
                     </button>
-                    {{-- <a href="#">Forgot password?</a> --}}
-                    {{-- <input type="submit" value="" /> --}}
-                    {{-- <button type="submit"> Login</button> --}}
+
                 </form>
             </div>
         </div>

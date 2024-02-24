@@ -6,7 +6,7 @@ interface MenuContracts
 {
     public function getAll();
     public function createMenu(array $data);
-    // public function updateCategory(array $data);
+    public function updateMenu(array $data);
     // public function login(array $data, $model);
     // public function logout($guard);
     // public function registration(array $data);

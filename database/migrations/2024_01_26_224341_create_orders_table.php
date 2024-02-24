@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_no')->unique();
-            $table->foreignId('order_details_id')->nullable()->constrained()->references('id')->on('order_details')->onDelete('cascade');
+            $table->foreignId('delivery_addresses_id')->nullable()->constrained()->references('id')->on('delivery_addresses')->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained()->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('type_id')->nullable()->constrained()->references('id')->on('types')->onDelete('cascade');
             $table->string('qty')->nullable();
+            $table->integer('gst_restaurant_charge')->nullable();
+            $table->integer('delivery_charge')->nullable();
+            $table->integer('packing_charge')->nullable();
+            $table->integer('total_price')->nullable();
             $table->tinyInteger('is_active')->default(0)->comment('0:pending,1:aprove,2:cancel,3:process,4:shipment,5:complet')->nullable();
             $table->timestamps();
         });

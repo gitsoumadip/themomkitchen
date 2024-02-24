@@ -63,7 +63,7 @@
                                     <li><a href="{{ route('logout') }}">Logout</a></li>
                                     <li><a href="{{ route('user.dashboard.home') }}">Profile</a></li>
                                 @else
-                                    <li><a href="{{ route('login') }}"><i class="fas fa-user"
+                                    <li><a href="{{ route('user.login') }}"><i class="fas fa-user"
                                             id="user"></i>Login</a>
                                     </li>
                                 @endif

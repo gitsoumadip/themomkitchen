@@ -310,6 +310,11 @@ function changeStatus(selector) {
         confirmButtonText: "Yes, " + message + " it!",
     }).then((result) => {
         if (result.isConfirmed) {
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+            });
             $.ajax({
                 type: "put",
                 url: baseUrl + url,

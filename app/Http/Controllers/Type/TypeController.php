@@ -24,7 +24,7 @@ class TypeController extends BaseController
     public function index()
     {
         $this->setPageTitle('Add Type');
-        $fetchTypeList = $this->TypeContracts->getAll();
+        $fetchTypeList = $this->TypeContracts->fetchgetAll();
         return view('admin.type.index', compact('fetchTypeList'));
     }
 

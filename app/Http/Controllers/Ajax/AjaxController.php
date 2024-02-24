@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\ProfileClinic;
 use App\Models\Schedule;
+use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 class AjaxController extends BaseController
@@ -19,6 +20,11 @@ class AjaxController extends BaseController
                 case 'users':
                     $id = uuidtoid($request->uuid, $table);
                     $data = User::where('id', $id)->update(['is_active' => $request->is_active]);
+                    $message = 'Users Status updated';
+                    break;
+                case 'types':
+                    $id = $request->uuid;
+                    $data = Type::where('id', $id)->update(['is_active' => $request->is_active]);
                     $message = 'Users Status updated';
                     break;
                 default:

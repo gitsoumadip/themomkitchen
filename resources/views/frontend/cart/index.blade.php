@@ -18,7 +18,29 @@
                                     @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
                                         @forelse ($fetchCartItem as $key => $data)
                                             <div class="col-md-8">
-                                                <div class="menu_singlebox item" data-id="{{ $data->id }}">
+                                                <div class="row item" data-id="{{ $data->id }}">
+                                                    <div class="menus_middle">
+                                                        <h4>{{ $data->types->name }}</h4>
+                                                        <input type="hidden" class="itemPrice"
+                                                            value="{{ $data->types->price }}">
+                                                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                                                        <span class="item_price">
+                                                            {{ $data->types->price }}
+                                                        </span>
+                                                        <div class="menus_right_incriment">
+                                                            <button class="decrease decrease_qty">-</button>
+                                                            <input type="hidden" name="categoryType[]"
+                                                                value="{{ $data->types->categorys->id }}">
+                                                            <input type="hidden" name="itemType[]"
+                                                                value="{{ $data->id }}">
+                                                            <input type="text" name="itemQty[]" class="itemQty"
+                                                                value="{{ $data->qty ?? '' }}">
+                                                            <button class="increase increase_qty">+</button>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                {{-- <div class="menu_singlebox item" data-id="{{ $data->id }}">
                                                     <div class="menus_left">
                                                         <img src="assets/images/food1.jpg" class="img-fluid" alt="">
                                                     </div>
@@ -41,7 +63,7 @@
                                                             value="{{ $data->qty ?? '' }}">
                                                         <button class="increase increase_qty">+</button>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         @empty
                                             <p>!Your Cart Is Empty</p>
@@ -71,7 +93,7 @@
             </div>
         </div>
     </section>
-{{-- 
+    {{-- 
     <div class="go-top"><i class="fa fa-angle-double-up" aria-hidden="true"></i></div>
 
     <div id="preloader">
@@ -88,20 +110,19 @@
         $(document).ready(function() {
             $(".increase, .decrease").click(function() {
                 var itemContainer = $(this).closest('.item');
-                // alert(itemContainer)
+                let item_price = $('.item_price').text();
                 var itemId = itemContainer.data('id');
                 var change = $(this).hasClass('increase') ? 1 : -1;
-                updateQuantity(itemId, change, itemContainer);
+                updateQuantity(itemId, change, itemContainer, item_price);
             });
 
-            function updateQuantity(itemId, change, itemContainer) {
+            function updateQuantity(itemId, change, itemContainer, item_price) {
                 var currentVal = parseInt(itemContainer.find(".itemQty").val());
                 if (!isNaN(currentVal)) {
                     var newQty = currentVal + change;
-
-                    // Update the UI
+                    var pes = newQty * item_price;
                     itemContainer.find(".itemQty").val(newQty);
-                    // alert(newQty)
+                    // alert(item_price)
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -116,6 +137,8 @@
                             newQty: newQty
                         },
                         success: function(response) {
+                            //console.log(response);
+                            // alert(response)
                             window.location.reload();
 
                             // if (response == 1) {

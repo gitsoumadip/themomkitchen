@@ -70,7 +70,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::match(['get', 'post'], '/add', 'add')->name('add');
     });
 
-    Route::namespace('Location')->prefix('location')->as('location.')->controller(LocationController::class)->group(function () {
+    Route::namespace('location')->prefix('location')->as('location.')->controller(LocationController::class)->group(function () {
         Route::get('/list', 'index')->name('list');
         Route::get('/edit/{uuid}', 'edit')->name('edit');
         Route::match(['get', 'post'], '/add', 'add')->name('add');

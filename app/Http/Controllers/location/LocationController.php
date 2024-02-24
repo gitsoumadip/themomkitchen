@@ -29,7 +29,7 @@ class LocationController extends BaseController
      */
     public function index()
     {
-        //
+        return "location";
     }
 
     /**
@@ -37,7 +37,7 @@ class LocationController extends BaseController
      */
     public function create()
     {
-        //
+        
     }
 
     /**

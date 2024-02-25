@@ -21,6 +21,8 @@
                             Menu
                         </div>
                     </div>
+                    <input type="hidden" name="uuid" id="uuid" value="{{ $data->id ?? '' }}">
+
                     <div class="col-md-4 adfilter-single">
                         <label for="gst_restaurant">GST And Restaurant Charge</label>
                         <input type="text" class="form-control" name="gst_restaurant" id="gst_restaurant"

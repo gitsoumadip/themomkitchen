@@ -1,13 +1,17 @@
 <?php
+
 namespace App\Http\Controllers\Ajax;
+
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\ProfileClinic;
 use App\Models\Schedule;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
+
 class AjaxController extends BaseController
 {
     public function setStatus(Request $request)
@@ -71,13 +75,18 @@ class AjaxController extends BaseController
                     $id = uuidtoid($request->uuid, $table);
                     $data = Category::where('id', $id)->delete();
                     $message = 'Category Deleted';
+                    break;  
+                case 'carts':
+                    $id = $request->uuid;
+                    $data = Cart::where('id', $id)->delete();
+                    $message = 'Cart Deleted';
                     break;
                     // case 'profile_clinics':
                     // $id = uuidtoid($request->uuid, $table);
                     // $data = ProfileClinic::where('id', $id)->delete();
                     // $message = 'Profile Clinic Deleted';
                     // break;
-                    case 'users':
+                case 'users':
                     $id = uuidtoid($request->uuid, $table);
                     $data = User::where('id', $id)->delete();
                     $message = 'User Deleted';
@@ -98,6 +107,4 @@ class AjaxController extends BaseController
             abort(405);
         }
     }
-
-    
 }

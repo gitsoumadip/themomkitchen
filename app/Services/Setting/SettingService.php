@@ -15,29 +15,40 @@ class SettingService implements SettingContracts
 
     public function getAll()
     {
-      
         $data = Setting::where('is_active', 1)->get();
+        return $data;
+    }
+    public function getCheckoutAll()
+    {
+        $data = DeliveryPrice::first();
         return $data;
     }
     public function updateSetting($data)
     {
-        dd($data);
-        $id = uuidtoid($data['uuid'], 'categories');
-        $isUpdateCategory = Category::where('id', $id)->first();
-        $isUpdateCategory->name = $data['name'];
-        $isUpdateCategory->description = $data['description'];
-        $isUpdateCategory->save();
-        return $isUpdateCategory;
+        // dd($data);
+        $id = $data['uuid'];
+        $isCreateCategory = DeliveryPrice::where('id', $id)->first();
+        $isCreateCategory->gst_restaurant = $data['gst_restaurant'];
+        $isCreateCategory->delivery_patner_km = $data['delivery_patner_km'];
+        $isCreateCategory->delivery_patner_fee = $data['delivery_patner_fee'];
+        $isCreateCategory->packing_charge = $data['packing_charge'];
+        $isCreateCategory->save();
+        return $isCreateCategory;
     }
     public function createSetting($data)
     {
-        // dd($data);
-        $isCreateCategory = DeliveryPrice::create([
-            'gst_restaurant' => $data['gst_restaurant'],
-            'delivery_patner_km' => $data['delivery_patner_km'],
-            'delivery_patner_fee' => $data['delivery_patner_fee'],
-            'packing_charge' => $data['packing_charge']
-        ]);
+        $id = $data['uuid'];
+        if ($data['uuid'] != null) {
+            $isCreateCategory = DeliveryPrice::where('id', $id)->first();
+        } else {
+            $isCreateCategory = new DeliveryPrice();
+        }
+        $isCreateCategory->gst_restaurant = $data['gst_restaurant'];
+        $isCreateCategory->delivery_patner_km = $data['delivery_patner_km'];
+        $isCreateCategory->delivery_patner_fee = $data['delivery_patner_fee'];
+        $isCreateCategory->packing_charge = $data['packing_charge'];
+        $isCreateCategory->save();
+
         return $isCreateCategory;
     }
 

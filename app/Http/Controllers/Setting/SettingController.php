@@ -58,7 +58,7 @@ class SettingController extends BaseController
                 }
                 if ($isCategoryCreated) {
                     DB::commit();
-                    return $this->responseRedirect('admin.item.list', 'Item Created Successfully', 'success', false);
+                    return $this->responseRedirect('admin.setting.checkout.add-edit', 'Update Successfully', 'success', false);
                 }
             } catch (\Illuminate\Validation\ValidationException $e) {
                 DB::rollBack();
@@ -69,7 +69,8 @@ class SettingController extends BaseController
                 return $this->responseRedirectBack('Something went wrong', 'error', true);
             }
         }
+        $data = $this->SettingContracts->getCheckoutAll();
 
-        return view('admin.setting.checkout.add-edit');
+        return view('admin.setting.checkout.add-edit', compact('data'));
     }
 }

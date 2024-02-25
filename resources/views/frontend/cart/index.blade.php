@@ -8,10 +8,7 @@
                         width="180px" height="150px"></div>
                 <h2><u>Cart</u></h2>
             </div>
-            @php
-                $totalItemPrice = 0;
-                $totalPrice = 0;
-            @endphp
+
             <div class="row">
                 <div class="col-12">
                     <div class="tab-content" id="pills-tabContent">
@@ -20,11 +17,12 @@
                             <div class="menutab_con">
                                 <div class="row">
                                     @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
-                                        @forelse ($fetchCartItem as $key => $data)
-                                            @php
-                                                $i = 1;
-                                                $totalItemPrice = $totalItemPrice + $data->total_price;
-                                            @endphp
+                                        @php
+                                            $totalItemPrice = 0; // Initialize totalItemPrice here
+                                        @endphp
+
+                                        @foreach ($fetchCartItem as $key => $data)
+                                            {{-- @dd( $data) --}}
                                             <div class="col-md-8">
                                                 <div class="row item" data-id="{{ $data->id }}">
                                                     <div class="menus_middle">
@@ -46,56 +44,37 @@
                                                             <button class="increase increase_qty">+</button>
                                                         </div>
                                                         <div>
-                                                            <h6>Total Price:-{{ $totalItemPrice ?? '' }}</h6>
+                                                            <a href="javascript:void(0)" data-uuid="{{ $data->id }}"
+                                                                data-table="carts" class="text-danger deleteData"><i
+                                                                    class="fa-regular fa-trash-can"
+                                                                    aria-hidden="true"></i></a>
+                                                            <div>
+                                                                <h6>Total Price:
+                                                                    {{ $data->total_price ?? $data->types->price }}
+                                                                </h6>
+                                                            </div>
                                                         </div>
+                                                        <hr>
                                                     </div>
-                                                    <hr>
                                                 </div>
-                                                {{-- <div class="menu_singlebox item" data-id="{{ $data->id }}">
-                                                    <div class="menus_left">
-                                                        <img src="assets/images/food1.jpg" class="img-fluid" alt="">
-                                                    </div>
-                                                    <div class="menus_middle">
-                                                        <h4>{{ $data->types->name }}</h4>
-                                                        @foreach ($data->types->items as $val)
-                                                            {{ $val->name }},
-                                                        @endforeach
-                                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                            Expedita,
-                                                            atque.</p>
-                                                    </div>
-                                                    <div class="menus_right_incriment">
-                                                        <button class="decrease decrease_qty">-</button>
-                                                        <input type="hidden" name="categoryType[]"
-                                                            value="{{ $data->types->categorys->id }}">
-                                                        <input type="hidden" name="itemType[]" value="{{ $data->id }}">
-                                                        <input type="text" name="itemQty[]"
-                                                            id="itemQty_{{ $data->id }}" class="itemQty"
-                                                            value="{{ $data->qty ?? '' }}">
-                                                        <button class="increase increase_qty">+</button>
-                                                    </div>
-                                                </div> --}}
+
+                                                @php
+                                                    $totalItemPrice += $data->total_price ?? $data->types->price; // Update totalItemPrice
+                                                @endphp
+                                        @endforeach
+
+                                        <div class="col-8">
+                                            <div class="menus_right_button d-flex justify-content-end">
+                                                <a href="{{ route('order.dalivery-address.list') }}">
+                                                    <button type="button" class="place_order">Place Order</button>
+                                                </a>
                                             </div>
-                                            @php
-                                                $i++;
-                                            @endphp
-                                        @empty
-                                            <p>!Your Cart Is Empty</p>
-                                        @endforelse
-                                    @else
-                                        <p>!Your Cart Is Empty</p>
-                                    @endif
-                                    <div class="col-8">
-                                        <div class="menus_right_button d-flex justify-content-end">
-                                            @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
-                                                <a href="{{ route('order.dalivery-address.list') }}"> <button type="button"
-                                                        class="place_order">Place Order</button></a>
-                                            @else
-                                                <a href="{{ route('menu') }}"> <button type="button"
-                                                        class="place_order">Place Order</button></a>
-                                            @endif
                                         </div>
-                                    </div>
+                                    @else
+                                        <div class="col-8">
+                                            <p>Your Cart Is Empty</p>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -104,17 +83,7 @@
             </div>
         </div>
     </section>
-    {{-- 
-    <div class="go-top"><i class="fa fa-angle-double-up" aria-hidden="true"></i></div>
 
-    <div id="preloader">
-        <div class="ripple_effect">
-
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div> --}}
 @endsection
 @push('scripts')
     <script>
@@ -157,45 +126,5 @@
                 }
             }
         });
-
-        // JavaScript with jQuery
-        // $(document).ready(function() {
-        //     $(".increase").click(function() {
-        //         $getId=
-        //         updateQuantity(1);
-        //     });
-
-        //     $(".decrease").click(function() {
-        //         $getId=
-        //         updateQuantity(-1);
-        //     });
-
-        //     function updateQuantity(change) {
-        //         var currentVal = parseInt($(".itemQty").val());
-        //         if (!isNaN(currentVal)) {
-        //             var newQty = currentVal + change;
-
-        //             // Update the UI
-        //             $(".itemQty").val(newQty);
-        //             alert(newQty)
-
-        //             // Update the database using AJAX
-        //             $.ajax({
-        //                 type: 'POST',
-        //                 url: '/update-quantity', // Update this with your Laravel route
-        //                 data: {
-        //                     itemId: {{ $data->id ?? 0 }},
-        //                     newQty: newQty
-        //                 },
-        //                 success: function(response) {
-        //                     console.log(response); // Log the server response
-        //                 },
-        //                 error: function(error) {
-        //                     console.error(error); // Log any errors
-        //                 }
-        //             });
-        //         }
-        //     }
-        // });
     </script>
 @endpush

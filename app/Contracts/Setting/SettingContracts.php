@@ -5,6 +5,7 @@ namespace App\Contracts\Setting;
 interface SettingContracts
 {
     public function getAll();
+    public function getCheckoutAll();
     public function updateSetting(array $data); 
     public function createSetting(array $data);
     // public function login(array $data, $model);

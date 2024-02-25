@@ -85,6 +85,7 @@
                                                 @endforelse
                                             </div>
                                         </div>
+                                        {{-- @dd($isFetchDeliveryPrice) --}}
                                         <hr>
                                         @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
                                             <div class="col-md-6">
@@ -92,9 +93,15 @@
                                                     <p> Price Details</p>
                                                     <div class="row">
                                                         @php
-                                                            $totalPrice = $totalItemPrice + 3;
-                                                            $packaging = 20 * $i;
-                                                        @endphp
+                                                            $packaging = $isFetchDeliveryPrice->packing_charge * $i;
+                                                            $distanceCharge = $isFetchDeliveryPrice->delivery_patner_km * $isFetchDeliveryPrice->delivery_patner_fee;
+                                                            $totalPrice = $totalItemPrice + $packaging + $distanceCharge;
+                                                            @endphp
+                                                            <input type="hidden" name="packaging" value="{{$packaging??''}}">
+                                                            <input type="hidden" name="distanceCharge" value="{{$distanceCharge??''}}">
+                                                            <input type="hidden" name="totalPrice" value="{{$totalPrice??''}}">
+                                                            <input type="hidden" name="gst_resturant" value="{{ $isFetchDeliveryPrice->gst_restaurant ?? '' }}">
+                                                            <input type="hidden" name="totalitemQty" value="{{$i??''}}">
                                                         <div class="col-lg-8 d-flex gap-5 m-2">
                                                             <div class="">Item Total</div>
                                                             <div class=""> {{ $totalItemPrice }} </div>
@@ -102,21 +109,27 @@
                                                         <div class="col-lg-8 d-flex gap-5 m-2">
                                                             <div class="">GST And Restaurant Charge <br> <span>GST And
                                                                     Restaurant </span></div>
-                                                            <div class=""> 0 </div>
+                                                            <div class="">
+                                                                {{ $isFetchDeliveryPrice->gst_restaurant ?? '' }} </div>
                                                         </div>
                                                         <div class="col-lg-8 d-flex gap-5 m-2">
-                                                            <div class="">Delivery Partner fee for 2km <br> <span>Per
+                                                            <div class="">Delivery Partner fee for
+                                                                {{ $isFetchDeliveryPrice->delivery_patner_km ?? '' }}km
+                                                                <br>
+                                                                <span>Per
                                                                     km
-                                                                    Rs-10</span> </div>
-                                                            <div class="">10 </div>
+                                                                    Rs-{{ $isFetchDeliveryPrice->delivery_patner_fee ?? '' }}</span>
+                                                            </div>
+                                                            <div class="">{{ $distanceCharge ?? '' }}</div>
                                                         </div>
                                                         <div class="col-lg-8 d-flex gap-5">
-                                                            <div class="">Packing Charge Per Item -Rs 20</div>
+                                                            <div class="">Packing Charge Per Item -Rs
+                                                                {{ $isFetchDeliveryPrice->packing_charge ?? '' }}</div>
                                                             <div class="">{{ $packaging }}</div>
                                                         </div>
                                                         <div class="col-lg-8 d-flex gap-5 m-2">
                                                             <div>Total</div>
-                                                            <div>{{ $totalPrice }}</div>
+                                                            <div>{{ $totalPrice ?? '' }}</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,11 +137,11 @@
                                         @endif
                                         <div class="col-8">
                                             <div class="menus_right_button d-flex justify-content-end">
-                                                @if (isset($isFetch) && count($isFetch) > 0)
+                                                @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
                                                     <button type="submit" class="place_order">Checkout</button></a>
                                                 @else
-                                                    <a href="{{ route('menu') }}"> <button type="submit"
-                                                            class="place_order">GoTo Menu</button></a>
+                                                    <a href="{{ route('menu') }}"
+                                                            class=" btn place_order">GoTo Menu</a>
                                                 @endif
                                             </div>
                                         </div>

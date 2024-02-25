@@ -9,6 +9,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\deliveryAddress;
+use App\Models\DeliveryPrice;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\OrderDetails;
@@ -72,7 +73,8 @@ class FrontendController extends BaseController
                 'user_id' => $uid,
                 'type_id' => $datasss->id,
                 'qty' => 1,
-                'price' => $datasss->price
+                'price' => $datasss->price,
+                'total_price' => $datasss->price,
 
             ]);
         }
@@ -97,7 +99,6 @@ class FrontendController extends BaseController
             ]);
         }
         return $isUpdate;
-
     }
 
     private function calculateSubtotal($cart)
@@ -113,11 +114,24 @@ class FrontendController extends BaseController
 
     public function itemOrder(Request $request)
     {
+
         // dd($request->all());
         $uid = auth()->user()->id;
         $shippingAddress = $request->shippingAddress;
 
-        for ($i = 0; $i < count($request->itemType); $i++) {            
+        $orders = new Order();
+        $orders->order_no = generateUniqueOrderNo(); // You need to define a function to generate a unique order number
+        $orders->delivery_addresses_id = $shippingAddress;
+        $orders->user_id = $uid;
+        $orders->qty = $request->totalitemQty;
+        $orders->gst_restaurant_charge = $request->gst_resturant;
+        $orders->delivery_charge = $request->distanceCharge;
+        $orders->packing_charge = $request->packaging;
+        $orders->total_price = $request->totalPrice;
+        $orders->save();
+        $orderId = $orders->id;
+        // dd($request->itemQty);
+        for ($i = 0; $i < count($request->itemType); $i++) {
             $typeId = $request->itemType[$i];
             $qty = $request->itemQty[$i];
             $price = $request->price[$i];
@@ -132,7 +146,7 @@ class FrontendController extends BaseController
                 $order = new OrderDetails();
                 // $order->order_no = generateUniqueOrderNo(); // You need to define a function to generate a unique order number
                 $order->type_id = $typeId;
-                // $order->order_id = $shippingAddress;
+                $order->order_id = $orderId;
                 $order->qty = $qty;
                 $order->price = $price;
                 $order->total_price = $price * $qty;
@@ -140,7 +154,7 @@ class FrontendController extends BaseController
                 $order->is_active = 0;
                 $order->save();
             }
-        }        
+        }
         Cart::where('user_id', $uid)->delete();
 
         return $this->responseRedirect('order.dalivery-address.list', 'Item(s) created successfully', 'success', false);
@@ -199,8 +213,9 @@ class FrontendController extends BaseController
         $uid = auth()->user()->id;
         $fetchCartItem = Cart::with('types', 'users')->where('user_id', $uid)->get();
         $isFetch = deliveryAddress::where('user_id', $uid)->where('is_active', 1)->get();
+        $isFetchDeliveryPrice = DeliveryPrice::first();
         // dd($fetchCartItem);
-        return view('frontend.order.dalivery-address.index', compact('isFetch', 'fetchCartItem'));
+        return view('frontend.order.dalivery-address.index', compact('isFetch', 'fetchCartItem', 'isFetchDeliveryPrice'));
     }
 
     // public function registration()

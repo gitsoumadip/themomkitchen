@@ -190,7 +190,7 @@
                     </li>
                 @endif
 
-                @if (auth()->user()->hasRole('super-admin', 'clinic', 'doctor'))
+                {{-- @if (auth()->user()->hasRole('super-admin', 'clinic', 'doctor'))
                     <li class="app-sidebar__heading mm-@yield('user-permission') ?? mm-@yield('role-permission')">
                         <a href="#">
                             <div class="menuitem_box">
@@ -235,7 +235,7 @@
                             </li>
                         </ul>
                     </li>
-                @endif
+                @endif --}}
 
                 {{-- @if (auth()->user()->hasRole('super-admin', 'clinic', 'doctor'))
                     <li class="app-sidebar__heading mm-@yield('user-permission') ?? mm-@yield('role-permission')">
@@ -298,6 +298,22 @@
                     </a>
                 </li>
                 @endif --}}
+
+                @if (auth()->user()->hasRole('super-admin'))
+                <li class="app-sidebar__heading mm-@yield('setting')">
+                    <a href="{{ route('admin.setting.checkout.list') }}">
+                        <div class="menuitem_box">
+                            <div class="menuitem_name">
+                                <span>
+                                    <img src="{{ asset('admin_assets/images/icon_money.png') }}" class="img-fluid"
+                                        alt="" />
+                                </span>
+                               Setting
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            @endif
                 <li class="app-sidebar__heading mm-@yield('logout')">
                     <a href="{{ route('admin.logout') }}">
                         <div class="menuitem_box">

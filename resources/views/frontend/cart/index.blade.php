@@ -8,6 +8,10 @@
                         width="180px" height="150px"></div>
                 <h2><u>Cart</u></h2>
             </div>
+            @php
+                $totalItemPrice = 0;
+                $totalPrice = 0;
+            @endphp
             <div class="row">
                 <div class="col-12">
                     <div class="tab-content" id="pills-tabContent">
@@ -17,6 +21,10 @@
                                 <div class="row">
                                     @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
                                         @forelse ($fetchCartItem as $key => $data)
+                                            @php
+                                                $i = 1;
+                                                $totalItemPrice = $totalItemPrice + $data->total_price;
+                                            @endphp
                                             <div class="col-md-8">
                                                 <div class="row item" data-id="{{ $data->id }}">
                                                     <div class="menus_middle">
@@ -36,6 +44,9 @@
                                                             <input type="text" name="itemQty[]" class="itemQty"
                                                                 value="{{ $data->qty ?? '' }}">
                                                             <button class="increase increase_qty">+</button>
+                                                        </div>
+                                                        <div>
+                                                            <h6>Total Price:-{{ $totalItemPrice ?? '' }}</h6>
                                                         </div>
                                                     </div>
                                                     <hr>
@@ -65,6 +76,9 @@
                                                     </div>
                                                 </div> --}}
                                             </div>
+                                            @php
+                                                $i++;
+                                            @endphp
                                         @empty
                                             <p>!Your Cart Is Empty</p>
                                         @endforelse
@@ -82,13 +96,10 @@
                                             @endif
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -137,17 +148,10 @@
                             newQty: newQty
                         },
                         success: function(response) {
-                            //console.log(response);
-                            // alert(response)
                             window.location.reload();
-
-                            // if (response == 1) {
-                            // alert(response)
-                            // }
-                            // console.log(response); // Log the server response
                         },
                         error: function(error) {
-                            // console.error(error); // Log any errors
+                            console.error(error); // Log any errors
                         }
                     });
                 }

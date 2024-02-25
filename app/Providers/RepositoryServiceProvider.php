@@ -8,6 +8,7 @@ use App\Contracts\Category\CategoryContracts;
 use App\Contracts\Items\ItemContracts;
 use App\Contracts\Location\LocationContracts;
 use App\Contracts\Menu\MenuContracts;
+use App\Contracts\Setting\SettingContracts;
 use App\Contracts\Type\TypeContracts;
 use App\Contracts\UserManagment\UserManagmentContract;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +19,7 @@ use App\Services\Category\CategoryService;
 use App\Services\Item\ItemService;
 use App\Services\Location\LocationService;
 use App\Services\Menu\MenuService;
+use App\Services\Setting\SettingService;
 use App\Services\Type\TypeService;
 use App\Services\UserManagment\UserManagmentService;
 
@@ -32,6 +34,7 @@ class RepositoryServiceProvider extends ServiceProvider
         MenuContracts::class => MenuService::class,
         UserManagmentContract::class => UserManagmentService::class,
         LocationContracts::class => LocationService::class,
+        SettingContracts::class => SettingService::class,
     ];
     public function register(): void
     {

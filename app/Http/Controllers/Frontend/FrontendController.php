@@ -98,35 +98,6 @@ class FrontendController extends BaseController
         }
         return $isUpdate;
 
-        // if (!isset($cart[$typeId])) {
-        //     return response()->json(['error' => 'Item not found in cart'], 404);
-        // }
-
-        // if ($newQty === 'increase') {
-        //     $cart[$typeId]['quantity']++;
-        // } elseif ($newQty === 'decrease') {
-        //     $cart[$typeId]['quantity']--;
-        //     if ($cart[$typeId]['quantity'] <= 0) {
-        //         unset($cart[$typeId]);
-        //     }
-        // } else {
-        //     return response()->json(['error' => 'Invalid action'], 400);
-        // }
-
-        // // Update cart session data
-        // $request->session()->put('cart', $cart);
-
-        // // Recalculate prices
-        // $subtotal = $this->calculateSubtotal($cart);
-        // $deliveryCharge = 5; // Example delivery charge
-        // $totalPrice = $subtotal + $deliveryCharge;
-
-        // return response()->json([
-        //     'subtotal' => $subtotal,
-        //     'delivery_charge' => $deliveryCharge,
-        //     'total_price' => $totalPrice
-        // ]);
-
     }
 
     private function calculateSubtotal($cart)
@@ -169,8 +140,7 @@ class FrontendController extends BaseController
                 $order->is_active = 0;
                 $order->save();
             }
-        }
-        
+        }        
         Cart::where('user_id', $uid)->delete();
 
         return $this->responseRedirect('order.dalivery-address.list', 'Item(s) created successfully', 'success', false);

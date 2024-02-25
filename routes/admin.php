@@ -10,6 +10,7 @@ use App\Http\Controllers\Menu\MenuController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\RolePermission\PermissionController;
 use App\Http\Controllers\RolePermission\RoleController;
+use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\Type\TypeController;
 use App\Http\Controllers\User\UserController;
 
@@ -90,5 +91,12 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
         Route::get('/list', 'list')->name('list');
         Route::get('/edit/{uuid}', 'edit')->name('edit');
         Route::match(['get', 'post'], '/add', 'add')->name('add');
+    });
+
+    // **************************Setting*********************************************************<
+    Route::namespace('Setting')->prefix('setting')->as('setting.')->controller(SettingController::class)->group(function () {
+        Route::get('/list', 'index')->name('checkout.list');
+        Route::get('/edit/{uuid}', 'edit')->name('edit');
+        Route::match(['get', 'post'], '/checkout-add', 'add')->name('checkout.add');
     });
 });

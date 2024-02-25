@@ -49,7 +49,6 @@
                                             </div>
                                         @endforelse
 
-
                                         <div class="col-md-8">
                                             <div class="menu_singlebox">
                                                 @forelse ($fetchCartItem as $key => $item)

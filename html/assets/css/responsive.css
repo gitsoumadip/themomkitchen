@@ -1,0 +1,57 @@
+@media only screen and (max-width: 991px) {
+  .stellarnav.mobile.right > ul {
+    z-index: 9;
+    background: #212020;
+  }
+  .stellarnav.mobile > ul > li > a {
+    text-align: left;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .stellarnav.mobile.right > ul {
+    z-index: 9;
+    background: #212020;
+  }
+  .stellarnav.mobile > ul > li > a {
+    text-align: left;
+  }
+  .swiper-horizontal {
+    height: 70vh;
+  }
+
+  .swiper-wrapper
+    > .swiper-slide.swiper-slide-visible.swiper-slide-fully-visible.swiper-slide-active
+    > div {
+    height: 70vh;
+  }
+
+  .heroi_con {
+    position: absolute;
+    top: 50%;
+    z-index: 99;
+    color: #fff;
+    left: 50%;
+    width: 50%;
+    margin: auto;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 991px) {
+}
+
+@media only screen and (max-width: 1211px) {
+}
+
+@media only screen and (max-width: 1051px) {
+}
+
+@media only screen and (max-width: 992px) {
+}
+
+@media only screen and (max-width: 850px) {
+}
+
+@media only screen and (max-width: 660px) {
+}

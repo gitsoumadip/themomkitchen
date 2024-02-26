@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* =============================
+          Default Css
+============================== */
+a {
+  text-decoration: none;
+  outline: 0 !important;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+:focus {
+  outline: 0 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  background: #333;
+}
+
+header {
+  background: #101010;
+  padding: 10px 0px;
+
+  z-index: 9;
+}
+.stellarnav.light li a {
+  text-align: right;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+  color: #ff1e36;
+}
+.stellarnav ul {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: end;
+}
+.stellarnav ul li.active a {
+  color: #f6a200;
+  font-weight: 600;
+}
+.stellarnav ul li:hover a {
+  color: #f6a200;
+}
+.stellarnav.light a {
+  color: #fff;
+}
+.stellarnav.light .menu-toggle span.bars span {
+  background: #fffcfc;
+}
+.stellarnav.light.right.mobile {
+  text-align: right;
+}
+a.close-menu.full {
+  font-size: 0;
+}
+.stellarnav.light .icon-close:before {
+  border-color: #fff;
+}
+.stellarnav.light .icon-close:after {
+  border-color: #fff;
+}
+/*=================================
+    Preloader
+====================================*/
+#preloader {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  z-index: 9999;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ripple_effect span {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin: 0 5px;
+  position: relative;
+}
+
+.ripple_effect span::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+  z-index: -1;
+  animation: ripple 1.5s ease-out infinite;
+}
+
+.ripple_effect span:first-child {
+  background-color: #ff6574;
+}
+
+.ripple_effect span:first-child::before {
+  animation-delay: 0.2s;
+}
+
+.ripple_effect span:nth-child(2) {
+  background-color: #fe3b4f;
+  transform: scale(0.9);
+}
+
+span:nth-child(2)::before {
+  animation-delay: 0.4s;
+}
+
+.ripple_effect span:nth-child(3) {
+  background-color: #fe2a3f;
+  transform: scale(0.8);
+}
+
+.ripple_effect span:nth-child(3)::before {
+  animation-delay: 0.6s;
+}
+
+.ripple_effect span:nth-child(4) {
+  background-color: #ff1e36;
+  transform: scale(0.7);
+}
+
+.ripple_effect span:nth-child(4)::before {
+  animation-delay: 0.8s;
+}
+
+.ripple_effect span:last-child {
+  background-color: #fe0922;
+  transform: scale(0.6);
+}
+
+.ripple_effect span:last-child::before {
+  animation-delay: 1s;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+.logo {
+  max-width: 100px;
+}
+
+.go-top {
+  position: fixed;
+  cursor: pointer;
+  bottom: 100px;
+  right: 20px;
+  border-radius: 50%;
+  background-color: #7d83a8;
+  color: #fff;
+  z-index: 999;
+  width: 40px;
+  text-align: center;
+  height: 40px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 25px;
+  -webkit-transition: var(--transition);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.go-top.active {
+  opacity: 1;
+  visibility: visible;
+  bottom: 25px;
+  -webkit-animation: top-bottom 5s infinite linear;
+  animation: top-bottom 5s infinite linear;
+}
+
+.go-top i {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.go-top:hover {
+  color: #ffffff;
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+  background-color: #0d1c27;
+  border: 1px solid #0d1c27;
+}
+.go-top.active svg {
+  font-size: 19px;
+  padding-bottom: 1px;
+}
+
+/*=================================
+    Swiper JS Hero Section
+====================================*/
+.banner {
+  margin: 2%;
+}
+
+[swiper_scale_active] .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  border-radius: 20px;
+  border-color: transparent;
+  /* shadow */
+  box-shadow: 0 0 100px 40px var(--main-bg-color);
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  [swiper_scale_active] .swiper-slide {
+    border-radius: 10px;
+  }
+}
+
+[swiper_scale_active] .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CUSTOM CSS "TRICK" => the link should work only on the active slide  */
+[swiper_scale_active] .swiper-slide:not(.swiper-slide-active) a {
+  pointer-events: none;
+}
+
+/* #### CUSTOM NEXT/PREV #### */
+[btn_group] {
+  text-align: center;
+  margin-top: 16px;
+}
+
+[btn_group] button {
+  background: transparent;
+  padding: 10px 16px;
+  border-width: 0px;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.5s linear;
+}
+
+[btn_group] button:hover {
+  opacity: 1;
+}
+
+[btn_group] svg {
+  color: white;
+}
+.contactus {
+  background: #181818;
+  width: 100%;
+  position: fixed;
+  z-index: 9;
+  bottom: 0;
+  padding: 15px;
+  text-align: center;
+}
+.contactus button {
+  background: transparent;
+  border: none;
+  color: #f6a200;
+  font-size: 22px;
+  border: 1px solid #f6a200;
+  padding: 6px 20px;
+  border-radius: 5px;
+}
+
+.contactus button:hover {
+  background: #f6a200;
+  color: #171717;
+}
+.blink {
+  animation: blink 0.5s infinite;
+}
+@keyframes blink {
+  to {
+    opacity: 0;
+  }
+}
+
+.hero_img {
+  position: relative;
+  height: 100%;
+}
+
+.hero_img .swiper-slide {
+  position: relative;
+}
+
+.hero_img .swiper-slide::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  background: #000000ad;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.heroi_con {
+  position: absolute;
+  top: 40%;
+  z-index: 99;
+  color: #fff;
+  left: 65%;
+  width: 50%;
+  margin: auto;
+  transform: translate(-50%, -50%);
+}
+.heroi_con h3 {
+  font-family: 'Sansita Swashed', system-ui;
+  font-size: 42px;
+  color: #ffa800;
+}
+
+.heroi_con p {
+  font-size: 14px;
+  color: #d8d8d8;
+  margin: 10px 0;
+}

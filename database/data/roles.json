@@ -1,0 +1,20 @@
+{
+    "roles": [
+        {
+            "name": "Super Admin",
+            "slug": "super-admin"
+        },
+        {
+            "name": "Admin",
+            "slug": "admin"
+        },
+        {
+            "name": "Customer",
+            "slug": "customer"
+        },
+        {
+            "name": "User",
+            "slug": "user"
+        }
+    ]
+}

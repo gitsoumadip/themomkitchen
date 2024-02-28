@@ -838,6 +838,13 @@ section.login-sec {
 .menusm_name {
     display: flex;
     gap: 10px;
+    background: #545454;
+    padding: 15px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    border: 1.5px solid #262626;
 }
 .addToCart.add_cart {
     border: 1px solid #ffa800;
@@ -868,4 +875,55 @@ section.login-sec {
 .option_box {
     display: flex;
     gap: 10px;
+}
+
+.deliveryadd_box {
+    justify-content: space-between;
+}
+
+.pricedetails_box {
+    margin: 20px;
+    background: #464646;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cart_item {
+    background: #464646;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cartitem_box {
+    max-height: 350px;
+    overflow-y: auto;
+}
+.price_sec {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+}
+.menus_right_incriment button {
+    background: #272727;
+    padding: 2px 10px;
+    color: #fff;
+    border: 1px solid #333;
+    margin: 0 10px;
+}
+.menus_right_incriment .itemQty {
+    min-width: 50px;
+    background-color: #433e3e;
+    border: 1px solid #ffc107;
+    color: #fff;
+    padding: 2px 10px;
+    text-align: center;
+}
+.deleteData {
+    background: #333333;
+    color: #ff162c;
+    padding: 5px 12px;
+    border-radius: 5px;
 }

@@ -11,78 +11,72 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-starters" role="tabpanel"
-                        aria-labelledby="pills-starters-tab">
-                        <div class="menutab_con">
-                            <div class="row">
-                                @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
-                                <!-- @php
-                                $totalItemPrice = 0; // Initialize totalItemPrice here
-                                @endphp -->
 
-                                @foreach ($fetchCartItem as $key => $data)
-                                {{-- @dd( $data) --}}
-                                <div class="col-md-8">
-                                    <div class="row item" data-id="{{ $data->id }}">
-                                        <div class="menus_middle">
-                                            <div class="menusm_name">
-                                                <h4>{{ $data->types->name }}</h4>
-                                                <input type="hidden" class="itemPrice"
-                                                    value="{{ $data->types->price }}">
-                                                <i class="fa-solid fa-indian-rupee-sign"></i>
-                                                <span class="item_price">
-                                                    {{ $data->types->price }}
-                                                </span>
-                                                <div class="menus_right_incriment">
-                                                    <button class="decrease decrease_qty">-</button>
-                                                    <input type="hidden" name="categoryType[]"
-                                                        value="{{ $data->types->categorys->id }}">
-                                                    <input type="hidden" name="itemType[]" value="{{ $data->id }}">
-                                                    <input type="text" name="itemQty[]" class="itemQty"
-                                                        value="{{ $data->qty ?? '' }}">
-                                                    <button class="increase increase_qty">+</button>
-                                                </div>
-                                                <div>
-                                                    <a href="javascript:void(0)" data-uuid="{{ $data->id }}"
-                                                        data-table="carts" class="text-danger deleteData"><i
-                                                            class="fa-regular fa-trash-can" aria-hidden="true"></i></a>
-                                                    <div>
-                                                        <div>
-                                                            <h6>Total Price:
-                                                                {{ $data->total_price ?? $data->types->price }}
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                </div>
-                                            </div>
+                @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
+                @php
+                $totalItemPrice = 0; // Initialize totalItemPrice here
+                @endphp
 
-                                            <!-- @php
-                                            $totalItemPrice += $data->total_price ?? $data->types->price; // Update
-                                            totalItemPrice
-                                            @endphp -->
-                                            @endforeach
+                @foreach ($fetchCartItem as $key => $data)
+                {{-- @dd( $data) --}}
+                <div class="cart_item item" data-id="{{ $data->id }}">
+                    <div class="cartitem_box">
+                        <div class="menusm_name">
+                            <h4>{{ $data->types->name }}</h4>
+                            <input type="hidden" class="itemPrice" value="{{ $data->types->price }}">
+                            <div>
+                                <i class="fa-solid fa-indian-rupee-sign"></i>
+                                <span class="item_price">
+                                    {{ $data->types->price }}
+                                </span>
+                            </div>
 
-                                            <div class="col-8">
-                                                <div class="menus_right_button d-flex justify-content-end">
-                                                    <a href="{{ route('order.dalivery-address.list') }}">
-                                                        <button type="button" class="place_order">Place Order</button>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            @else
-                                            <div class="col-8">
-                                                <p>Your Cart Is Empty</p>
-                                            </div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="menus_right_incriment">
+                                <button class="decrease decrease_qty">-</button>
+                                <input type="hidden" name="categoryType[]" value="{{ $data->types->categorys->id }}">
+                                <input type="hidden" name="itemType[]" value="{{ $data->id }}">
+                                <input type="text" name="itemQty[]" class="itemQty" value="{{ $data->qty ?? '' }}">
+                                <button class="increase increase_qty">+</button>
+                            </div>
+                            <div>
+                                <a href="javascript:void(0)" data-uuid="{{ $data->id }}" data-table="carts"
+                                    class=" deleteData"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div>
+                        <div>
+                            <div class="price_sec">
+                                <div class="total_price">
+                                    <h6>Total Price:
+                                        {{ $data->total_price ?? $data->types->price }}
+                                    </h6>
+                                </div>
+                                <div class="menus_right_button d-flex justify-content-end">
+                                    <a href="{{ route('order.dalivery-address.list') }}">
+                                        <button type="button" class="place_order">Place
+                                            Order</button>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            @php
+                            $totalItemPrice += $data->total_price ?? $data->types->price; // Update
+
+                            @endphp
+                            @endforeach
+
+
+
+
+                            @else
+                            <div class="col-8">
+                                <p>Your Cart Is Empty</p>
+                            </div>
+                            @endif
+
+
 </section>
 
 @endsection

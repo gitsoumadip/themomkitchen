@@ -107,6 +107,27 @@
         margin-top: 25%;
         padding: 15px;
     }
+
+    .cartitem_box .menusm_name {
+        flex-wrap: wrap;
+    }
+    .menus_right_incriment {
+        width: 160px;
+    }
+    .price_sec {
+        padding: 10px;
+    }
+    .menus_right_button .place_order {
+        margin-right: 0;
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+    .total_price h6 {
+        font-size: 15px;
+    }
+    .cartitem_box .menusm_name h4 {
+        font-size: 18px;
+    }
 }
 @media only screen and (min-width: 767px) and (max-width: 991px) {
 }

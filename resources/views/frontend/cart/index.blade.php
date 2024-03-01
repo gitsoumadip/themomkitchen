@@ -4,8 +4,13 @@
     <section class="menu_sec">
         <div class="container">
             <div class="heading_box">
-                <div class="menu-icon"><img src="{{ asset('assets/images/cart.png') }}" class="img-fluid" alt=""
-                        width="180px" height="150px"></div>
+                <div class="menu-icon">
+                    <div class="mt-5">
+                       <div class="cart_item_img">
+                        <img src="{{ asset('assets/images/cart.png') }}" class="img-fluid" alt="" >
+                       </div>
+                    </div>
+                </div>
                 <h2><u>Cart</u></h2>
             </div>
             <div class="row">
@@ -32,9 +37,15 @@
                                             <input type="hidden" name="categoryType[]"
                                                 value="{{ $data->types->categorys->id }}">
                                             <input type="hidden" name="itemType[]" value="{{ $data->id }}">
-                                            <input type="text" name="itemQty[]" class="itemQty"
-                                                value="{{ $data->qty ?? '' }}">
+                                            <button type="text" name="itemQty[]" class="itemQty btn btn-info"
+                                                value="{{ $data->qty ?? '' }}">{{ $data->qty ?? '' }}</button>
                                             <button class="increase increase_qty">+</button>
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-indian-rupee-sign"></i>
+                                            <span class="item_price">
+                                                {{ $data->total_price ?? $data->types->price }}
+                                            </span>
                                         </div>
                                         <div>
                                             <a href="javascript:void(0)" data-uuid="{{ $data->id }}" data-table="carts"
@@ -45,7 +56,7 @@
                                 </div>
                                 <div>
                                     <div>
-                                        <div class="price_sec">
+                                        {{-- <div class="price_sec">
                                             <div class="total_price">
                                                 <h6>Total Price:
                                                     {{ $data->total_price ?? $data->types->price }}
@@ -57,14 +68,27 @@
                                                         Order</button>
                                                 </a>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         @php
-                                            $totalItemPrice += $data->total_price ?? $data->types->price; 
+                                            $totalItemPrice += $data->total_price ?? $data->types->price;
                                         @endphp
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
+                        <div class="price_sec">
+                            <div class="total_price">
+                            </div>
+                            <div class="menus_right_button d-flex justify-content-end">
+                                <a href="{{ route('order.dalivery-address.list') }}">
+                                    <button type="button" class="place_order">Place
+                                        Order</button>
+                                </a>
+                            </div>
+                        </div>
                     @else
-                        <div class="col-8">
-                            <p>Your Cart Is Empty</p>
+                        <div class="col-8 cart_empty_item">
+                            <p class="item_empty">!Your Cart Is Empty</p>
                         </div>
                     @endif
     </section>

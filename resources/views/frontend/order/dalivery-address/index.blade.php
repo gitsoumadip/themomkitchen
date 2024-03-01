@@ -78,7 +78,7 @@
                                             $i++;
                                             @endphp
                                             @empty
-                                            <p>!Your Cart Is Empty</p>
+                                            <p>Check Your Order</p>
                                             @endforelse
                                         </div>
                                     </div>

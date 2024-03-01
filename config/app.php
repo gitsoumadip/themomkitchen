@@ -171,6 +171,8 @@ return [
         App\Providers\RepositoryServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
+
     ])->toArray(),
 
     /*
@@ -187,6 +189,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-    ])->toArray(),
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
+    ])->toArray(),
 ];

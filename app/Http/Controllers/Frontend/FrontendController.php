@@ -63,10 +63,14 @@ class FrontendController extends BaseController
         $uid = auth()->user()->id;
         $datasss = $this->TypeContracts->findById($request->id);
         $fetchCartItem = Cart::where(['type_id' => $datasss->id, 'user_id' => $uid])->first();
-        // dd($datasss);
+        // dd($fetchCartItem);
         if ($fetchCartItem) {
+            $item = $fetchCartItem->qty + 1;
+            $tottalPrice = $item * $fetchCartItem->price;
+            // dd($item );
             $isUpdate = Cart::where('id', $fetchCartItem->id)->update([
-                'qty' => $fetchCartItem->qty + 1
+                'qty' => $item,
+                'total_price' => $tottalPrice
             ]);
         } else {
             $isCreateCart = Cart::create([

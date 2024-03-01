@@ -42,13 +42,18 @@
                                 {{ $key + 1 }}
                             </td>
                             <td>{{ $data->types->name }}</td>
+                            {{-- {{implode(',', $request->input('name', []));}} --}}
                             <td>{{ $data->items->name }}</td>
-                           
+                            {{-- @foreach ($data->items as $k => $item)
+                                <td>{{ $item->name }}</td>
+                            @endforeach --}}
+
                             <td>
                                 <div class="action_box">
-                            <a href="{{route('admin.menu.edit',$data->type_id)}}" class="text-primary" ><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a>
-                            {{-- <a href="javascript:void(0)"  data-uuid="{{$category->uuid}}" data-table="categories" class="text-danger deleteData"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></a> --}}
-                        </div>
+                                    <a href="{{ route('admin.menu.edit', $data->type_id) }}" class="text-primary"><i
+                                            class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a>
+                                    {{-- <a href="javascript:void(0)"  data-uuid="{{$category->uuid}}" data-table="categories" class="text-danger deleteData"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></a> --}}
+                                </div>
                             </td>
                         </tr>
                     @empty

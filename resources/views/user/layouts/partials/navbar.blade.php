@@ -17,13 +17,13 @@
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
 
-                                    <a href="#" class="dropdown-item">
+                                    {{-- <a href="#" class="dropdown-item">
                                         <i class="fa-solid fa-user-doctor fa-lg"></i> User Account
-                                    </a>
-                                    {{-- <a href="{{ route('admin.profile.view') }}" class="dropdown-item"> --}}
+                                    </a> --}}
+                                    <a href="{{ route('admin.profile.view') }}" class="dropdown-item">
                                         Update Profile
                                     </a>
-                                    {{-- <a href="{{ route('admin.password.chenge') }}" class="dropdown-item"> --}}
+                                    <a href="{{ route('admin.password.chenge') }}" class="dropdown-item">
                                         Update Password
                                     </a>
                                     <hr>

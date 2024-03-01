@@ -44,10 +44,8 @@ class MenuController extends BaseController
         $fetchMenu = $this->menuContracts->getAll();
         return view('admin.menu.index', compact('fetchMenu'));
     }
-
     public function add(Request $request)
     {
-
         $this->setPageTitle('Add Type');
         $data = Item::where('is_active', 1)->get();
         if ($request->isMethod('post')) {
@@ -67,7 +65,6 @@ class MenuController extends BaseController
                     $insertArry = $request->except(['_token', '_method', 'id']);
                     $isCategoryCreated = $this->menuContracts->createMenu($insertArry);
                 }
-
                 if ($isCategoryCreated) {
                     DB::commit();
                     return $this->responseRedirect('admin.item.list', 'Item Created Successfully', 'success', false);

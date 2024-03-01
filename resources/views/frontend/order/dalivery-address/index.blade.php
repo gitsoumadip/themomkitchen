@@ -13,143 +13,179 @@
         @endphp
         <div class="row">
             <div class="col-12">
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-starters" role="tabpanel"
-                        aria-labelledby="pills-starters-tab">
-                        <div class="menutab_con">
-                            <form action="{{ route('item.order') }}" method="post" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-md-7">
-                                        @csrf
-                                        @forelse ($isFetch as $key => $data)
-                                        <div class="menu_singlebox deliveryadd_box" data-id="{{ $data->id }}">
-                                            <div class="menus_middle">
-                                                <h4>Deliver to:</h4>
-                                                <input type="hidden" name="shippingAddress"
-                                                    id="shippingAddress_{{ $data->id }}" value="{{ $data->id }}">
-                                                <label for="shippingAddress_{{ $data->id }}">
-                                                    <p>name={{ $data->name }},
-                                                        Address={{ $data->address }},Phone={{ $data->phone }},Pincode={{ $data->pincode }},
-                                                        City={{ $data->city }}</p>
 
-                                                </label>
-                                            </div>
-                                            <div class="menus_right_button d-flex justify-content-end">
-                                                <a href="{{ route('order.dalivery-address.address-list') }}"><button
-                                                        type="button" class="place_order">Change</button></a>
-                                            </div>
-                                        </div>
+                <div class="menutab_con">
+                    <form action="{{ route('item.order') }}" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-7">
+                                @csrf
+                                @forelse ($isFetch as $key => $data)
+                                <div class="menu_singlebox deliveryadd_box" data-id="{{ $data->id }}">
+                                    <div class="menus_middle deliver_details">
+                                        <h4>Deliver to:</h4>
+                                        <input type="hidden" name="shippingAddress" id="shippingAddress_{{ $data->id }}"
+                                            value="{{ $data->id }}">
+                                        <label for="shippingAddress_{{ $data->id }}">
+                                            <p class="cust_name">name={{ $data->name }},</p>
+                                            <p>
+                                                Address={{ $data->address }},Phone={{ $data->phone }},Pincode={{ $data->pincode }},
+                                                City={{ $data->city }}</p>
 
-                                        @empty
-                                        <div class="menus_right_button d-flex justify-content-end">
-                                            <a href="{{ route('order.dalivery-address.address-list') }}"><button
-                                                    type="button" class="place_order">Add Address</button></a>
-                                        </div>
-                                        @endforelse
+                                        </label>
+                                    </div>
+                                    <div class="menus_right_button d-flex justify-content-end">
+                                        <a href="{{ route('order.dalivery-address.address-list') }}"><button
+                                                type="button" class="place_order">Change</button></a>
+                                    </div>
+                                </div>
+
+                                @empty
+                                <div class="menus_right_button d-flex justify-content-end">
+                                    <a href="{{ route('order.dalivery-address.address-list') }}"><button type="button"
+                                            class="place_order">Add Address</button></a>
+                                </div>
+                                @endforelse
 
 
-                                        <div class="menu_singlebox">
-                                            @forelse ($fetchCartItem as $key => $item)
-                                            @php
-                                            $i = 1;
-                                            $totalItemPrice = $totalItemPrice + $item->total_price;
-                                            @endphp
-                                            <div class="row">
-                                                <div class="menus_middle">
-                                                    <input type="hidden" name="price[]" class="price"
-                                                        value="{{ $item->types->price }}">
-                                                    <input type="hidden" name="categoryType[]"
-                                                        value="{{ $item->types->categorys->id }}">
-                                                    <input type="hidden" name="itemType[]"
-                                                        value="{{ $item->types->id }}">
-                                                    <input type="hidden" name="cartId[]" value="{{ $item->id }}">
-                                                    <input type="hidden" name="itemQty[]" class="itemQty"
-                                                        value="{{ $item->qty ?? '' }}">
-                                                    <h4>{{ $item->types->name }}</h4>
-                                                    @foreach ($item->types->items as $val)
-                                                    {{ $val->name }},
-                                                    @endforeach
-                                                    <p>{{ $item->types->price }}</p>
-                                                    <p>{{ $item->qty }}</p>
-                                                    <p> {{ $item->total_price }}</p>
+                                <div class=" delivery_menubox">
+                                    @forelse ($fetchCartItem as $key => $item)
+                                    @php
+                                    $i = 1;
+                                    $totalItemPrice = $totalItemPrice + $item->total_price;
+                                    @endphp
+                                    <div class="row">
+                                        <div class="menus_middle">
+                                            <input type="hidden" name="price[]" class="price"
+                                                value="{{ $item->types->price }}">
+                                            <input type="hidden" name="categoryType[]"
+                                                value="{{ $item->types->categorys->id }}">
+                                            <input type="hidden" name="itemType[]" value="{{ $item->types->id }}">
+                                            <input type="hidden" name="cartId[]" value="{{ $item->id }}">
+                                            <input type="hidden" name="itemQty[]" class="itemQty"
+                                                value="{{ $item->qty ?? '' }}">
+                                            <h4>{{ $item->types->name }}</h4>
+                                            <div class="dish_items">
+                                                <div class="ditems_name">
+                                                    <h6>
+                                                        @foreach ($item->types->items as $val)
+                                                        {{ $val->name }},
+                                                        @endforeach
+                                                    </h6>
                                                 </div>
+                                                <div class="ditems_singqty">
+                                                    <p>Qty:<span>{{ $item->qty }}</span></p>
+
+                                                </div>
+                                                <div class="ditems_singprice">
+                                                    <p>Price: <span>{{ $item->types->price }}</span></p>
+                                                </div>
+
+
+
+
                                             </div>
-                                            @php
-                                            $i++;
-                                            @endphp
-                                            @empty
-                                            <p>Check Your Order</p>
-                                            @endforelse
+                                            <div class="ditems_totalprice">
+
+                                                <p>Total<span> {{ $item->total_price }}</span></p>
+                                            </div>
                                         </div>
                                     </div>
-                                    {{-- @dd($isFetchDeliveryPrice) --}}
+                                    @php
+                                    $i++;
+                                    @endphp
+                                    @empty
+                                    <p>Check Your Order</p>
+                                    @endforelse
+                                </div>
+                            </div>
+                            {{-- @dd($isFetchDeliveryPrice) --}}
 
-                                    @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
-                                    <div class="col-md-5">
-                                        <div class="pricedetails_box">
-                                            <p> Price Details</p>
-                                            <div class="row">
-                                                @php
-                                                $packaging = $isFetchDeliveryPrice->packing_charge * $i;
-                                                $distanceCharge = $isFetchDeliveryPrice->delivery_patner_km *
-                                                $isFetchDeliveryPrice->delivery_patner_fee;
-                                                $totalPrice = $totalItemPrice + $packaging + $distanceCharge;
-                                                @endphp
-                                                <input type="hidden" name="packaging" value="{{$packaging??''}}">
-                                                <input type="hidden" name="distanceCharge"
-                                                    value="{{$distanceCharge??''}}">
-                                                <input type="hidden" name="totalPrice" value="{{$totalPrice??''}}">
-                                                <input type="hidden" name="gst_resturant"
-                                                    value="{{ $isFetchDeliveryPrice->gst_restaurant ?? '' }}">
-                                                <input type="hidden" name="totalitemQty" value="{{$i??''}}">
-                                                <div class="col-lg-8 d-flex gap-5 m-2">
-                                                    <div class="">Item Total</div>
-                                                    <div class=""> {{ $totalItemPrice }} </div>
+                            @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
+                            <div class="col-md-5">
+                                <div class="pricedetails_box">
+                                    <p> Price Details</p>
+                                    <div class="price_details">
+                                        <div class="row">
+                                            @php
+                                            $packaging = $isFetchDeliveryPrice->packing_charge * $i;
+                                            $distanceCharge = $isFetchDeliveryPrice->delivery_patner_km *
+                                            $isFetchDeliveryPrice->delivery_patner_fee;
+                                            $totalPrice = $totalItemPrice + $packaging + $distanceCharge;
+                                            @endphp
+                                            <input type="hidden" name="packaging" value="{{$packaging??''}}">
+                                            <input type="hidden" name="distanceCharge" value="{{$distanceCharge??''}}">
+                                            <input type="hidden" name="totalPrice" value="{{$totalPrice??''}}">
+                                            <input type="hidden" name="gst_resturant"
+                                                value="{{ $isFetchDeliveryPrice->gst_restaurant ?? '' }}">
+                                            <input type="hidden" name="totalitemQty" value="{{$i??''}}">
+                                            <div class="col-md-12 d-flex gap-5 m-2 justify-content-between">
+                                                <div class="">
+                                                    <h6>Item Total</h6>
                                                 </div>
-                                                <div class="col-lg-8 d-flex gap-5 m-2">
-                                                    <div class="">GST And Restaurant Charge <br> <span>GST And
-                                                            Restaurant </span></div>
-                                                    <div class="">
-                                                        {{ $isFetchDeliveryPrice->gst_restaurant ?? '' }} </div>
+                                                <div class="">
+                                                    <p>{{ $totalItemPrice }} </p>
                                                 </div>
-                                                <div class="col-lg-8 d-flex gap-5 m-2">
-                                                    <div class="">Delivery Partner fee for
+                                            </div>
+                                            <div class="col-md-12 d-flex gap-5 m-2 justify-content-between">
+                                                <div class="">
+                                                    <h6>GST And Restaurant Charge <br> <span>GST And
+                                                            Restaurant </span></h6>
+                                                </div>
+                                                <div class="">
+                                                    <p> {{ $isFetchDeliveryPrice->gst_restaurant ?? '' }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 d-flex gap-5 m-2 justify-content-between">
+                                                <div class="">
+                                                    <h6>Delivery Partner fee for
                                                         {{ $isFetchDeliveryPrice->delivery_patner_km ?? '' }}km
                                                         <br>
                                                         <span>Per
                                                             km
-                                                            Rs-{{ $isFetchDeliveryPrice->delivery_patner_fee ?? '' }}</span>
-                                                    </div>
-                                                    <div class="">{{ $distanceCharge ?? '' }}</div>
+                                                            Rs-{{ $isFetchDeliveryPrice->delivery_patner_fee ?? '' }}
+                                                    </h6></span>
                                                 </div>
-                                                <div class="col-lg-8 d-flex gap-5">
-                                                    <div class="">Packing Charge Per Item -Rs
-                                                        {{ $isFetchDeliveryPrice->packing_charge ?? '' }}</div>
-                                                    <div class="">{{ $packaging }}</div>
+                                                <div class="">
+                                                    <p>{{ $distanceCharge ?? '' }}</p>
                                                 </div>
-                                                <div class="col-lg-8 d-flex gap-5 m-2">
-                                                    <div>Total</div>
-                                                    <div>{{ $totalPrice ?? '' }}</div>
+                                            </div>
+                                            <div class="col-lg-12 d-flex gap-5 m-2 justify-content-between">
+                                                <div class="">
+                                                    <h6>Packing Charge Per Item -Rs
+                                                        {{ $isFetchDeliveryPrice->packing_charge ?? '' }}</h6>
+                                                </div>
+                                                <div class="">
+                                                    <p>{{ $packaging }}</p>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="col-md-12 totalprice_box d-flex gap-5 m-2 justify-content-between">
+                                                <div>
+                                                    <h6>Total</h6>
+                                                </div>
+                                                <div>
+                                                    <p>{{ $totalPrice ?? '' }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @endif
-                                    <div class="col-7">
-                                        <div class="menus_right_button d-flex justify-content-end">
-                                            @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
-                                            <button type="submit" class="place_order">Checkout</button></a>
-                                            @else
-                                            <a href="{{ route('menu') }}" class=" btn place_order">GoTo Menu</a>
-                                            @endif
-                                        </div>
-                                    </div>
                                 </div>
-                            </form>
+                            </div>
+                            @endif
+                            <div class="col-7">
+                                <div class="menus_right_button d-flex justify-content-end">
+                                    @if (isset($fetchCartItem) && count($fetchCartItem) > 0)
+                                    <button type="submit" class="place_order">Checkout</button></a>
+                                    @else
+                                    <a href="{{ route('menu') }}" class=" btn place_order">GoTo Menu</a>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
+
         </div>
     </div>
 </section>

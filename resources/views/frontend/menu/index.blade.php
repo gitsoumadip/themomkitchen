@@ -44,7 +44,7 @@
                             <div class="menutab_con">
                                 <div class="row">
                                     @foreach ($fetchTypeList as $key => $data)
-                                    {{-- @dd($data) --}}
+                                        {{-- @dd($data->is_avalible) --}}
                                         @if ($data->categorys->slug == 'lunch')
                                             <div class="col-md-6">
                                                 <div class="menu_singlebox">
@@ -65,11 +65,15 @@
                                                     </div>
                                                     <div class="menus_right">
                                                         @if (!empty(auth()->user()->id))
-                                                            <a href="#" class="addToCart add_cart"
-                                                                data-id="{{ $data->id }}"><i
-                                                                    class="fa-solid fa-cart-plus"
-                                                                    style="color: #ffa800;"></i>Add To
-                                                                Cart</a>
+                                                            @if ($data->is_avalible == 1)
+                                                                <a href="#" class="addToCart add_cart"
+                                                                    data-id="{{ $data->id }}"><i
+                                                                        class="fa-solid fa-cart-plus"
+                                                                        style="color: #ffa800;"></i>Add To
+                                                                    Cart</a>
+                                                            @else
+                                                            <p class="text-danger">!Unavailable</p>
+                                                            @endif
                                                         @else
                                                             <a href="{{ route('user.login') }}"
                                                                 class="addToCart add_cart"><i class="fa-solid fa-cart-plus"
@@ -198,7 +202,7 @@
                 }
             });
             $.ajax({
-                url: "{{ route('cart.addToCart') }}",   
+                url: "{{ route('cart.addToCart') }}",
                 type: 'POST',
                 data: {
                     id: addtocart

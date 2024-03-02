@@ -24,10 +24,10 @@ class ItemService implements ItemContracts
         return $isCreateCategory;
     }
 
-    public function updateCategory($data)
+    public function updateItem($data)
     {
-        $id = uuidtoid($data['uuid'], 'categories');
-        $isUpdateCategory = Category::where('id', $id)->first();
+        // $id = uuidtoid($data['uuid'], 'categories');
+        $isUpdateCategory = Item::where('id', $data['uuid'])->first();
         $isUpdateCategory->name = $data['name'];
         $isUpdateCategory->description = $data['description'];
         $isUpdateCategory->save();
@@ -38,5 +38,10 @@ class ItemService implements ItemContracts
     {
         $id = uuidtoid($uuid, 'categories');
         return Category::find($id);
+    }
+    public function fidnById($id)
+    {
+        // $id = uuidtoid($uuid, 'categories');
+        return Item::find($id);
     }
 }

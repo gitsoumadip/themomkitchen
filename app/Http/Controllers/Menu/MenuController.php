@@ -47,7 +47,7 @@ class MenuController extends BaseController
     public function add(Request $request)
     {
         $this->setPageTitle('Add Type');
-        $data = Item::where('is_active', 1)->get();
+        $datas = Item::where('is_active', 1)->get();
         if ($request->isMethod('post')) {
             // dd($request->all());
             // $request->validate([
@@ -79,7 +79,7 @@ class MenuController extends BaseController
             }
         }
 
-        return view('admin.menu.add-edit', compact('data'));
+        return view('admin.menu.add-edit', compact('datas'));
     }
     public function edit($id)
     {

@@ -37,22 +37,23 @@ class TypeController extends BaseController
             ]);
             DB::beginTransaction();
             try {
-                // if ($request->uuid) {
-                //     $insertArry = $request->except(['_token', '_method']);
-                //     $isUpdateCreated = $this->CategoryContract->updateCategory($insertArry);
-                //     // dd($isUpdateCreated);
-                //     if ($isUpdateCreated) {
-                //         DB::commit();
-                //         return $this->responseRedirect('admin.category.list', 'Category Update Successfully', 'success', false);
-                //     }
-                // } else {
-                $insertArry = $request->except(['_token', '_method', 'id']);
-                $isCategoryCreated = $this->TypeContracts->createType($insertArry);
-                if ($isCategoryCreated) {
-                    DB::commit();
-                    return $this->responseRedirect('admin.type.list', 'Type Created Successfully', 'success', false);
+                // dd($request->all());
+                if ($request->uuid) {
+                    $insertArry = $request->except(['_token', '_method']);
+                    $isUpdateCreated = $this->TypeContracts->updateType($insertArry);
+                    // dd($isUpdateCreated);
+                    if ($isUpdateCreated) {
+                        DB::commit();
+                        return $this->responseRedirect('admin.type.list', 'Type Update Successfully', 'success', false);
+                    }
+                } else {
+                    $insertArry = $request->except(['_token', '_method', 'id']);
+                    $isCategoryCreated = $this->TypeContracts->createType($insertArry);
+                    if ($isCategoryCreated) {
+                        DB::commit();
+                        return $this->responseRedirect('admin.type.list', 'Type Created Successfully', 'success', false);
+                    }
                 }
-                // }
             } catch (\Exception $e) {
                 DB::rollBack();
                 logger($e->getMessage() . '--' . $e->getFile() . '--' . $e->getLine());
@@ -60,5 +61,12 @@ class TypeController extends BaseController
             }
         }
         return view('admin.type.add-edit');
+    }
+
+    public function edit($uuid)
+    {
+        $this->setPageTitle('Edit Type');
+        $data = $this->TypeContracts->findById($uuid);
+        return view('admin.type.add-edit', compact('data'));
     }
 }

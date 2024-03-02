@@ -35,8 +35,8 @@ class OrderController extends BaseController
     public function index()
     {
         $this->setPageTitle('Order Details');
-        $fetchOrder =Order::with('types','types.items','users')->where('is_active', 0)->get();
-        // dd($fetchOrder->toArray());
+        $fetchOrder =Order::with('users','orderDetails','orderDetails.types')->get();
+        // dd($fetchOrder);
         return view('admin.order.index',compact('fetchOrder'));
     }
     public function add(Request $request)

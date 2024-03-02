@@ -74,6 +74,14 @@ $(document).ready(function (e) {
         // alert("Status");
         changeStatus($(this));
     });
+    $(document).on("click", ".isAvalable", function (e) {
+        alert("Status");
+        changeStatus($(this));
+    });
+    // $(document).on("change", ".orderstatusChange", function (e) {
+    //     // alert("Status oijuhgfcdxs");
+    //     orderChangeStatus($(this));
+    // });
 
     $(document).on("click", ".modal button.resetBtn", function (e) {
         if ($("form.formSubmit .password_section").length > 0)
@@ -283,6 +291,9 @@ function showToast(type, title, message) {
         position: "bottom-right",
     });
 }
+
+
+
 function changeStatus(selector) {
     var $this = selector;
     var state = $this.prop("checked") == true ? 1 : 0;

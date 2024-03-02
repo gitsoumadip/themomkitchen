@@ -36,7 +36,7 @@
                     <div class="col-md-8 adfilter-single">
                         <label for="itemId">Speciality Description</label>
                         <select name="itemId[]" id="itemId" multiple="multiple">
-                            {!! isset($data) && isset($data->items) ? getItemOptions($data->items->pluck('id')) : getItemOptions([]) !!}
+                            {!! isset($datas) && isset($datas->items) ? getItemOptions($datas->items->pluck('id')) : getItemOptions([]) !!}
                         </select>
                         @error('itemId')
                             <span class="invalid-feedback d-block" role="alert">

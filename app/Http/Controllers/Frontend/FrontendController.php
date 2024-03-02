@@ -140,8 +140,7 @@ class FrontendController extends BaseController
             $qty = $request->itemQty[$i];
             $price = $request->price[$i];
 
-            $fetchCartItem = orderDetails::where(['type_id' => $typeId, 'user_id' => $uid])->first();
-
+            $fetchCartItem = orderDetails::where(['type_id' => $typeId, 'user_id' => $uid, 'is_active' => 0])->first();
             if ($fetchCartItem) {
                 $fetchCartItem->update([
                     'qty' => $fetchCartItem->qty + $qty  // Increment by $qty, not just 1

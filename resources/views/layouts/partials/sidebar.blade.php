@@ -4,7 +4,7 @@
         <div class="collaspe_logo">
             <img src="{{ asset('admin_assets/images/collaspe_logo.svg') }}" class="img-fluid" alt="" />
         </div>
-        <div class="header__pane ml-auto">
+        <!-- <div class="header__pane ml-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
                     <span class="hamburger-box">
@@ -12,7 +12,7 @@
                     </span>
                 </button>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="app-header__mobile-menu">
         <div>

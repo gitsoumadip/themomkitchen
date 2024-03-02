@@ -677,12 +677,12 @@ section.login-sec {
 ========================================*/
 .fixed-header .app-header {
     height: 60px;
-    background: #fff 0% 0% no-repeat padding-box;
+    background: #101010 0% 0% no-repeat padding-box;
     box-shadow: 10px 0px 6px #4ba5ff1a;
 }
 
 .top_barhead h3 {
-    color: #1f393f;
+    color: #fff;
     font-size: 22px;
     font-weight: 600;
 }
@@ -818,12 +818,12 @@ span.sub_drop {
 
 .vertical-nav-menu li.mm-active .menuitem_name {
     font-weight: 600;
-    color: #1f393f;
+    color: #fff;
 }
 
 .menuitem_name {
     font-size: 16px;
-    color: #7f8583;
+    color: #bababa;
     font-weight: 500;
     line-height: 2.2rem;
 }
@@ -1037,6 +1037,7 @@ a.dropdown_item_setting {
 h3.heading_title {
     margin: 20px 10px;
     font-size: 22px;
+    color: #fff;
     font-weight: 500;
 }
 h3.heading_title span a {
@@ -1054,7 +1055,7 @@ h3.heading_title span a:hover {
 
 .adminb_title p {
     font-size: 20px;
-    color: #1f393f;
+    color: #f2f2f2;
     margin-bottom: 3px;
 }
 
@@ -3173,9 +3174,9 @@ div#myTabContent {
         Updated Css 21/12/23
 ========================================*/
 
-.app-theme-white.fixed-header .app-header__logo {
+/* .app-theme-white.fixed-header .app-header__logo {
     box-shadow: 0px 0px 0px #4f4f4f30 !important;
-}
+} */
 .collaspe_logo {
     display: none !important;
 }
@@ -3183,7 +3184,7 @@ div#myTabContent {
     font-weight: 500;
     color: #fff;
     /* padding: 10px 15px !important; */
-    background: #e9f6ef;
+    background: #333;
     height: auto !important;
 }
 .custom-control-input:checked ~ .custom-control-label::before {
@@ -3228,12 +3229,12 @@ div#myTabContent {
     object-fit: cover;
 }
 
-.clinicdetail-sect{
+.clinicdetail-sect {
     margin: 0px 0px;
     padding: 0px 0px;
     position: relative;
     width: 100%;
-    }
+}
 
 .clinicdetail-sect h5 {
     margin: 20px 1px;
@@ -3241,24 +3242,54 @@ div#myTabContent {
     font-weight: 500;
     border-bottom: #d7d7d7 1px solid;
     padding: 0px 0px 11px 0px;
-    }
- .clinicdetail-sect label {
+}
+.clinicdetail-sect label {
     margin-bottom: 4px !important;
     font-size: 15px;
     font-weight: 500;
-    }
+}
 .clinicdetail-sect .form-control {
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 12px 12px;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #ced4da;
-        border-radius: .25rem;
-        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    }
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 12px 12px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.app-theme-white.fixed-header .app-header__logo {
+    width: auto;
+}
+
+.widget-content-left.widget_noti .dropdown-menu {
+    color: #ffffff;
+    background-color: #707070;
+}
+.widget-content-left.widget_noti .dropdown-item {
+    color: #f3f3f3;
+}
+.myorder_box table {
+    color: #eaeaea;
+    width: 100%;
+}
+.myorder_box {
+    background: #494949;
+    padding: 15px;
+    margin: 25px 0 0 4px;
+}
+.stats_box h2 {
+    color: #f6f6f6;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.widget_noti .dropdown-item:hover,
+.widget_noti .dropdown-item:focus {
+    background-color: #333333;
+}

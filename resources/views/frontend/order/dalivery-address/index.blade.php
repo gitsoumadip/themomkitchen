@@ -99,7 +99,7 @@
                                                                 $isFetchDeliveryPrice->delivery_patner_km *
                                                                 $isFetchDeliveryPrice->delivery_patner_fee;
                                                             $totalPrice =
-                                                                $totalItemPrice + $packaging + $distanceCharge;                                                           
+                                                                $totalItemPrice + $packaging + $distanceCharge;
                                                         @endphp
                                                         <input type="hidden" name="packaging"
                                                             value="{{ $packaging ?? '' }}">
@@ -161,10 +161,11 @@
                                 </form>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
+
             </div>
-        </div>
     </section>
 
     <div class="go-top"><i class="fa fa-angle-double-up" aria-hidden="true"></i></div>

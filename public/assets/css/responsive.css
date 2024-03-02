@@ -134,6 +134,31 @@
     
     }
      */
+
+    /* profile responsive */
+    .closed-sidebar.closed-sidebar-mobile
+        .app-sidebar
+        .app-header__logo
+        .header__pane,
+    .closed-sidebar.closed-sidebar-mobile
+        .app-header
+        .app-header__logo
+        .header__pane {
+        display: block;
+    }
+    .closed-sidebar.closed-sidebar-mobile
+        .app-sidebar
+        .app-header__logo
+        .header__pane,
+    .closed-sidebar.closed-sidebar-mobile
+        .app-header
+        .app-header__logo
+        .header__pane {
+        display: block;
+    }
+    .app-header .app-header__logo {
+        display: block !important;
+    }
 }
 @media only screen and (min-width: 767px) and (max-width: 991px) {
 }

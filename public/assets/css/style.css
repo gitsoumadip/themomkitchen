@@ -709,6 +709,13 @@ section.login-sec {
     border-color: #019068;
 }
 
+button.btn.btn-primary.btn-effect.btn-effect-arrow:hover {
+    color: #000;
+    background-color: #f6a200;
+    border-color: #f6a200;
+    font-weight: 500;
+}
+
 .signup-checkbox {
     display: -webkit-box;
     display: -ms-flexbox;

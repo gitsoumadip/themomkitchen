@@ -4,7 +4,7 @@
         <div class="collaspe_logo">
             <img src="{{ asset('admin_assets/images/collaspe_logo.svg') }}" class="img-fluid" alt="" />
         </div>
-        <div class="header__pane ml-auto">
+        <!-- <div class="header__pane ml-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
                     <span class="hamburger-box">
@@ -12,7 +12,7 @@
                     </span>
                 </button>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="app-header__mobile-menu">
         <div>
@@ -27,8 +27,8 @@
         <!-- admin name -->
         <div class="adminname_box">
             <div class="adminb_head">
-                <img src="{{ asset('admin_assets/image/user-icon.jpg') }}" class="img-fluid" alt=""
-                    title="Cloud Queue"  height="200px" width="250px"/>
+                <img src="{{ asset('admin_assets/image/user-icon.jpg') }}" class="img-fluid" alt="" title="Cloud Queue"
+                    height="200px" width="250px" />
             </div>
             <div class="adminb_title">
                 <p>Hello,<span class="firstName">{{ auth()->user()->name }}</span></p>
@@ -39,15 +39,15 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading mm-@yield('dashboard')">
                     <a href="{{ route('user.dashboard.home') }}">
-                    <div class="menuitem_box">
-                        <div class="menuitem_name">
-                            <span>
-                                <img src="{{ asset('admin_assets/images/iwwa_dashboard.png') }}" class="img-fluid"
-                                    alt="" />
-                            </span>
-                            Dashboard
+                        <div class="menuitem_box">
+                            <div class="menuitem_name">
+                                <span>
+                                    <img src="{{ asset('admin_assets/images/iwwa_dashboard.png') }}" class="img-fluid"
+                                        alt="" />
+                                </span>
+                                Dashboard
+                            </div>
                         </div>
-                    </div>
                     </a>
                 </li>
                 <li class="app-sidebar__heading mm-@yield('category')">
@@ -65,19 +65,19 @@
                 </li>
 
                 @if (auth()->user()->hasRole('user'))
-                    <li class="app-sidebar__heading mm-@yield('category')">
-                        <a href="{{ route('user.dashboard.profile') }}">
-                            <div class="menuitem_box">
-                                <div class="menuitem_name">
-                                    <span>
-                                        <img src="{{ asset('admin_assets/images/icon_money.png') }}" class="img-fluid"
-                                            alt="" />
-                                    </span>
-                                    ACCOUNT SETTINGS
-                                </div>
+                <li class="app-sidebar__heading mm-@yield('category')">
+                    <a href="{{ route('user.dashboard.profile') }}">
+                        <div class="menuitem_box">
+                            <div class="menuitem_name">
+                                <span>
+                                    <img src="{{ asset('admin_assets/images/icon_money.png') }}" class="img-fluid"
+                                        alt="" />
+                                </span>
+                                ACCOUNT SETTINGS
                             </div>
-                        </a>
-                    </li>
+                        </div>
+                    </a>
+                </li>
                 @endif
 
                 <li class="app-sidebar__heading mm-@yield('logout')">
@@ -85,8 +85,7 @@
                         <div class="menuitem_box">
                             <div class="menuitem_name">
                                 <span>
-                                    <img src="{{ asset('admin_assets/images/logout.png') }}" class="img-fluid"
-                                        alt="" />
+                                    <img src="{{ asset('admin_assets/images/logout.png') }}" class="img-fluid" alt="" />
                                 </span>
                                 LOGOUT
                             </div>

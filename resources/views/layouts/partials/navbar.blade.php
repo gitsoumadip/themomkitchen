@@ -1,4 +1,21 @@
 <div class="app-header header-shadow">
+    <!-- mobile toggle -->
+    <div class="app-header__logo">
+        <div class="collaspe_logo">
+            <img src="{{ asset('admin_assets/images/collaspe_logo.svg') }}" class="img-fluid" alt="" />
+        </div>
+        <div class="header__pane">
+            <div>
+                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+                    data-class="closed-sidebar">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- mobile toggle/ -->
     <div class="app-header__content">
         <div class="app-header-left">
             <!-- top ar heading -->
@@ -15,7 +32,8 @@
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-2 btn">
                                     <div class="topbar_icon"><i class="fa-solid fa-user-doctor fa-2xl"></i></div>
                                 </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                <div tabindex="-1" role="menu" aria-hidden="true"
+                                    class="dropdown-menu dropdown-menu-right">
 
                                     <a href="#" class="dropdown-item">
                                         <i class="fa-solid fa-user-doctor fa-lg"></i> User Account

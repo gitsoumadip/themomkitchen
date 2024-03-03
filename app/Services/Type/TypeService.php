@@ -40,7 +40,7 @@ class TypeService implements TypeContracts
     public function createType($data)
     {
         // dd($data);
-        $imgName = fileUpload($data['img']);;
+        $imgName = fileUpload($data['img']);
         $isCreateCategory = Type::create([
             'categorie_id' => $data['category_id'],
             'name' => $data['name'],
@@ -50,15 +50,19 @@ class TypeService implements TypeContracts
         return $isCreateCategory;
     }
 
-    // public function updateCategory($data)
-    // {
-    //     $id = uuidtoid($data['uuid'], 'categories');
-    //     $isUpdateCategory = Category::where('id', $id)->first();
-    //     $isUpdateCategory->name = $data['name'];
-    //     $isUpdateCategory->description = $data['description'];
-    //     $isUpdateCategory->save();
-    //     return $isUpdateCategory;
-    // }
+    public function updateType($data)
+    {
+        // dd($data);
+        // $id = uuidtoid($data['uuid'], 'categories'); 
+        $imgName = fileUpload($data['img']);
+        $isUpdateCategory = Type::where('id', $data['uuid'])->first();
+        $isUpdateCategory->categorie_id = $data['category_id'];
+        $isUpdateCategory->name = $data['name'];
+        $isUpdateCategory->price = $data['price'];
+        $isUpdateCategory->description = $data['description'];
+        $isUpdateCategory->save();
+        return $isUpdateCategory;
+    }
 
     // public function findZoneById($uuid)
     // {
@@ -66,3 +70,9 @@ class TypeService implements TypeContracts
     //     return Category::find($id);
     // }
 }
+
+
+// "category_id" => "1"
+//   "name" => "Go to the login.blade.php file in following path: resources/views/auth/login.blade.php."
+//   "price" => "2"
+//   "description

@@ -753,4 +753,18 @@ if (!function_exists('getVideoCode')) {
             return preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', array_keys($my_array_of_vars)[0]);
         }
     }
+
+
+    // *******************************************************************************************************
+
+    if (!function_exists('createAt')) {
+        function createAt($data, $type)
+        {
+            if ($type == 'date') {
+                return Carbon::parse($data)->format('Y-m-d');
+            } elseif ($type == 'time') {
+                return Carbon::parse($data)->format('H:i:s');
+            }
+        }
+    }
 }

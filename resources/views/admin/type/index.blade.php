@@ -27,7 +27,8 @@
                         <th scope="col"> Name</th>
                         <th scope="col"> Description</th>
                         <th scope="col"> Price</th>
-                        {{-- <th scope="col"> Status</th> --}}
+                        <th scope="col"> Status</th>
+                        <th scope="col"> Available</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -48,14 +49,23 @@
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox" class="custom-control-input statusChange"
                                         id="switch{{ $data->id }}" data-uuid="{{ $data->id }}"
-                                        data-message="{{ $data->is_active ? 'deactive' : 'active' }}" data-table="types"
+                                        data-message="{{ $data->is_active ? 'deactivate' : 'activate' }}" data-table="types"
                                         name="example" {{ $data->is_active == 1 ? 'checked' : '' }}>
-                                    <label class="custom-control-label " for="switch{{ $data->id }}"></label>
+                                    <label class="custom-control-label" for="switch{{ $data->id }}"></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input statusChange"
+                                        id="switchAval{{ $data->id }}" data-uuid="{{ $data->id }}"
+                                        data-message="{{ $data->is_avalible ? 'deactivate' : 'activate' }}" data-table="typess"
+                                        name="example" {{ $data->is_avalible == 1 ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="switchAval{{ $data->id }}"></label>
                                 </div>
                             </td>
                             <td>
                                 <div class="action_box">
-                                    <a href="{{ route('admin.category.edit', $data->id) }}" class="text-primary"><i
+                                    <a href="{{ route('admin.type.edit', $data->id) }}" class="text-primary"><i
                                             class="fa-regular fa-pen-to-square" aria-hidden="true"></i></a>
                                     <a href="javascript:void(0)" data-uuid="{{ $data->id }}" data-table="categories"
                                         class="text-danger deleteData"><i class="fa-regular fa-trash-can"
@@ -72,4 +82,5 @@
     </div>
 @endsection
 @push('scripts')
+    
 @endpush

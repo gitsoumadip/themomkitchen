@@ -13,7 +13,7 @@
         <div class="company_profiles card-body">
             <form action="{{ route('admin.item.add') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="uuid" id="uuid" value="{{ $data->uuid ?? '' }}">
+                <input type="hidden" name="uuid" id="uuid" value="{{ $data->id ?? '' }}">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 ">
                         <div class="doctor-details-style clinicsheading_title">
@@ -51,4 +51,5 @@
     </div>
 @endsection
 @push('scripts')
+ 
 @endpush

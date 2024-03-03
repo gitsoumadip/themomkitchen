@@ -14,7 +14,8 @@
         <div class="company_profiles card-body">
             <form action="{{ route('admin.type.add') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="uuid" id="uuid" value="{{ $data->uuid ?? '' }}">
+                {{-- @dd($data) --}}
+                <input type="hidden" name="uuid" id="uuid" value="{{ $data->id ?? '' }}">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 ">
                         <div class="doctor-details-style clinicsheading_title">
@@ -25,7 +26,7 @@
                         <label for="name">Category</label>
                         <select class="form-control" name="category_id" id="category_id">
                             <option value=""></option>
-                            {{ getCategory('') }}
+                            {{ getCategory($data->categorie_id ?? '') }}
                         </select>
                         @error('name')
                             <span class="invalid-feedback d-block" role="alert">
@@ -36,8 +37,7 @@
                     <div class="col-md-4 adfilter-single">
                         <label for="name">Type Name</label>
                         <input type="text" class="form-control" name="name" id="name"
-                            placeholder="Enter Type Name."
-                            value="{{ old('description', $data->description ?? '') }}">
+                            placeholder="Enter Type Name." value="{{ old('description', $data->description ?? '') }}">
                         @error('description')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -46,8 +46,7 @@
                     </div>
                     <div class="col-md-4 adfilter-single">
                         <label for="name">Prices</label>
-                        <input type="text" class="form-control" name="price" id="price"
-                            placeholder="Enter Prices."
+                        <input type="text" class="form-control" name="price" id="price" placeholder="Enter Prices."
                             value="{{ old('price', $data->price ?? '') }}">
                         @error('price')
                             <span class="invalid-feedback d-block" role="alert">
@@ -67,7 +66,7 @@
                     <div class="col-md-12 adfilter-single">
                         <label for="name">Type Description</label>
                         <textarea class="form-control" name="description" id="description" placeholder="Enter Speciality Description."
-                            value="{{ old('description', $data->description ?? '') }}" cols="10" rows="3"></textarea>
+                            value="{{ old('description', $data->description ?? '') }}" cols="10" rows="3">{{ $data->description ?? '' }}</textarea>
                         @error('description')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>

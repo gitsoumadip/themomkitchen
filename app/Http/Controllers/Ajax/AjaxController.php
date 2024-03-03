@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\ProfileClinic;
 use App\Models\Schedule;
 use App\Models\Type;
@@ -31,6 +32,11 @@ class AjaxController extends BaseController
                     $data = Type::where('id', $id)->update(['is_active' => $request->is_active]);
                     $message = 'Users Status updated';
                     break;
+                case 'typess':
+                    $id = $request->uuid;
+                    $data = Type::where('id', $id)->update(['is_avalible' => $request->is_active]);
+                    $message = 'Users Status updated';
+                    break;
                 default:
                     return $this->responseJson(false, 200, 'Something Wrong Happened');
             }
@@ -46,7 +52,7 @@ class AjaxController extends BaseController
     public function deliveryAddress(Request $request)
     {
         if ($request->ajax()) {
-            dd($request->all());
+            // dd($request->all());
             $table = $request->find;
             $data = $request->value;
             switch ($table) {
@@ -75,7 +81,7 @@ class AjaxController extends BaseController
                     $id = uuidtoid($request->uuid, $table);
                     $data = Category::where('id', $id)->delete();
                     $message = 'Category Deleted';
-                    break;  
+                    break;
                 case 'carts':
                     $id = $request->uuid;
                     $data = Cart::where('id', $id)->delete();
@@ -105,6 +111,22 @@ class AjaxController extends BaseController
             }
         } else {
             abort(405);
+        }
+    }
+
+    public function orderStatus(Request $request)
+    {
+        if ($request->ajax()) {
+            $is_active = $request->status;
+            $id = $request->userid;
+            // dd($is_active);
+            $data = Order::where('id', $id)->update(['is_active' => $is_active]);
+            $message = 'Order Status updated';
+            if ($data) {
+                return $this->responseJson(true, 200, $message, $data);
+            } else {
+                return $this->responseJson(false, 200, 'Something Wrong Happened');
+            }
         }
     }
 }

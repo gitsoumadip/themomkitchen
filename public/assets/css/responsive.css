@@ -159,6 +159,17 @@
     .app-header .app-header__logo {
         display: block !important;
     }
+    .ditems_totalprice,
+    .dish_items {
+        width: 100%;
+    }
+
+    .delivery_menubox .menus_middle {
+        text-align: left;
+    }
+    .ditems_name {
+        width: 35%;
+    }
 }
 @media only screen and (min-width: 767px) and (max-width: 991px) {
 }

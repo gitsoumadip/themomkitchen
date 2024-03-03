@@ -931,3 +931,7 @@ p.cust_name {
     border-radius: 6px;
     text-align: center;
 }
+.price_details h6 {
+    font-weight: 300;
+    color: #d8d8d8;
+}

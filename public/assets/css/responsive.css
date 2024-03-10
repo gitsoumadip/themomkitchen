@@ -170,6 +170,9 @@
     .ditems_name {
         width: 35%;
     }
+    .delivery_list {
+        flex-direction: row;
+    }
 }
 @media only screen and (min-width: 767px) and (max-width: 991px) {
 }

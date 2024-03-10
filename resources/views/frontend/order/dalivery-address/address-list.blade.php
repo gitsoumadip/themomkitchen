@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app', ['isSidebar' => true, 'isNavbar' => true, 'isFooter' => true])
 @section('dashboard', 'active')
 @section('content')
-<section class="menu_sec">
+<section class="menu_sec mt-5">
     <div class="container">
         <div class="heading_box">
 
@@ -24,7 +24,7 @@
                             @if (isset($isFetch) && count($isFetch) > 0)
                             @forelse($isFetch as $data)
                             <div class="col-md-8">
-                                <div class="menu_singlebox item" data-id="{{ $data->id }}">
+                                <div class="menu_singlebox delivery_list item" data-id="{{ $data->id }}">
                                     {{-- <div class="col"> --}}
                                     <input type="radio" name="shippingAddress" id="shippingAddress_{{ $data->id }}"
                                         value="{{ $data->id }}">
